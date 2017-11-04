@@ -5,6 +5,7 @@
 <%@ page import="javax.servlet.*"%>
 <%@ page import="javax.servlet.annotation.*"%>
 <%@ page import="javax.servlet.http.*"%>
+
 <%@ page import="java.sql.*"%>
 <%@ page import="javax.naming.*"%>
 <%@ page import="javax.sql.*"%>
@@ -21,7 +22,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
- <meta charset="UTF-8">
+<!--   <meta charset="UTF-8"> -->
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <link rel="stylesheet" href="css/estilo.css"/>
         
@@ -78,7 +79,7 @@
 		
 		 <div align="center">
         <table border="1" cellpadding="5">
-            <caption><h2>Listado de profesores</h2></caption>
+            <caption>Listado de profesores</caption>
             <tr>
                 <th>ID_Profesor</th>
                 <th>Nombre</th>

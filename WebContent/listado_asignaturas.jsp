@@ -9,6 +9,7 @@
 <%@ page import="javax.naming.*"%>
 <%@ page import="javax.sql.*"%>
 
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
@@ -21,7 +22,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
- <meta charset="UTF-8">
+
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <link rel="stylesheet" href="css/estilo.css"/>
         
@@ -62,7 +63,7 @@
 		
 		 <div align="center">
         <table border="1" cellpadding="5">
-            <caption><h2>Listado de asignaturas</h2></caption>
+            <caption>Listado de asignaturas</caption>
             <tr>
                 <th>ID</th>
                 <th>Asignatura</th>
