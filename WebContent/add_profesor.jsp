@@ -40,9 +40,9 @@
       
         <table border="1" cellpadding="5">
             <caption>
-                <h2>               
+                         
                         Alta profesor
-                </h2>
+            
             </caption>
                 
             <tr>
