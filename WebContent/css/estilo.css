@@ -1,113 +1,115 @@
-
-body {color: green; background-color: #F3F3FF}
+body {
+	color: green;
+	background-color: #F3F3FF
+}
 
 input:focus {
-    border: 2px solid #000;
-    background: #F3F3F3;
+	border: 2px solid #000;
+	background: #F3F3F3;
 }
 
 #div_login input {
-    width: 100px;
+	width: 100px;
 }
 
 #div_login {
-    position: absolute;
-    top: 5%;
-    left: 75%;
-    width: 210px;
-    padding-right: 10px;
+	position: absolute;
+	top: 5%;
+	left: 75%;
+	width: 210px;
+	padding-right: 10px;
 }
 
 #div_login label {
-    width: 70px;
-    float: left;
+	width: 70px;
+	float: left;
 }
 
 #div_busqueda {
-    position: absolute;
-    bottom: 30%;
-    left: 15%;
-    width: 500px;
+	position: absolute;
+	bottom: 30%;
+	left: 15%;
+	width: 500px;
 }
 
 .centrado {
-    text-align: center;
+	text-align: center;
 }
 
 .derecha {
-    text-align: right;
+	text-align: right;
 }
 
 #mapa {
-    border-color: tomato;
-    border-style: solid;
-    border-width: 5px;
-    border-radius: 15px;
-    width: 810px;
-    margin: auto;
+	border-color: tomato;
+	border-style: solid;
+	border-width: 5px;
+	border-radius: 15px;
+	width: 810px;
+	margin: auto;
 }
 
 table {
-    border-collapse: collapse;
-    margin: auto;
-    width: 60%;
+	border-collapse: collapse;
+	margin: auto;
+	width: 60%;
 }
 
 table, th, td {
-    border: 1px solid black;
+	border: 1px solid black;
 }
 
 thead {
-    background-color: darkseagreen;
+	background-color: darkseagreen;
 }
 
 #editar {
-    margin: auto;
-    width: 70%;
+	margin: auto;
+	width: 70%;
 }
 
 legend {
-    font-size: 150%;
+	font-size: 150%;
 }
 
 #alta {
-    width: 45%;
-    margin: auto;
+	width: 45%;
+	margin: auto;
 }
 
 .menu_arriba {
-    margin-top: 0;
-    margin-bottom: 20px;
-    background: darkseagreen;
-    height: 70px;
-    padding-top: 10px;
-    text-align: right;
+	margin-top: 0;
+	margin-bottom: 20px;
+	background: darkseagreen;
+	height: 70px;
+	padding-top: 10px;
+	text-align: right;
 }
 
-td > table {
-    width: 100%;
+td>table {
+	width: 100%;
 }
 
 #barra {
-    padding: 0;
+	padding: 0;
 }
 
 #barra li {
-    display: inline;
+	display: inline;
 }
 
 #barra li a {
-    font-family: Arial;
-    font-size:11px;
-    text-decoration: none;
-    float:left;
-    padding: 10px;
-    background-color: #2175bc;
-    color: #fff;
+	font-family: Arial;
+	font-size: 11px;
+	text-decoration: none;
+	float: left;
+	padding: 10px;
+	background-color: #2175bc;
+	color: #fff;
 }
 
 #barra li a:hover {
-    background-color: #2586d7;
-    margin-top:-2px;
-    padding-bottom:12px;
+	background-color: #2586d7;
+	margin-top: -2px;
+	padding-bottom: 12px;
 }
