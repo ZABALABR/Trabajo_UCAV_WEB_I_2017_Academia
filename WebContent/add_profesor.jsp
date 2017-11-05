@@ -15,9 +15,9 @@
 %>
 </head>
 <body>
-	<center>
-		<h1> Gestión de profesores</h1>
-	</center>
+	
+		<h1 align="center"> Gestión de profesores</h1>
+	
 	<ul id="barra">
 		<!-- <li><a href="listar">Profesores</a></li> -->
 		<li><a href="listar_alumnos">Alumnos</a></li>
@@ -25,14 +25,14 @@
 	</ul>
 	<br>
 	<br>
-	<center>
-		<h2>
+	
+		<h2 align="center">
 			<!--          <a href="alta_profesor">Alta profesor</a>
             &nbsp;&nbsp;&nbsp; -->
 			<a href="listar_profes">Listado de profesores</a>
 
 		</h2>
-	</center>
+	
 
 	<div align="center">
 
