@@ -51,12 +51,19 @@ public class Servlet_Listar_Asignaturas extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		String sivengode = request.getParameter("vengode").trim();
+	
 		List<Asignatura> ListaAsignaturas;
 		try {
 			 asignaturasDAO = new AsignaturasDAO();	
 			ListaAsignaturas = asignaturasDAO.Listar_Asignaturas();
 			request.setAttribute("ListaAsignaturas", ListaAsignaturas);
-		    RequestDispatcher dispatcher = request.getRequestDispatcher("listado_asignaturas.jsp");
+			RequestDispatcher dispatcher;
+			if (sivengode.equals("asignar"))  {
+					 dispatcher = request.getRequestDispatcher("asignar_alumnos_asignatura.jsp");	
+			}else {
+		             dispatcher = request.getRequestDispatcher("listado_asignaturas.jsp");
+			}
 	        dispatcher.forward(request, response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

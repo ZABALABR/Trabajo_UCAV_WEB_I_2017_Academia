@@ -29,7 +29,7 @@
 		<h2>
 			<!--          <a href="alta_profesor">Alta profesor</a>
             &nbsp;&nbsp;&nbsp; -->
-			<a href="listar_asignaturas">Listado de asignaturas</a>
+			<a href="listar_asignaturas?vengode=''">Listado de asignaturas</a>
 
 		</h2>
 	</center>

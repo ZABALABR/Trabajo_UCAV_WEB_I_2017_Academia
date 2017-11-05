@@ -43,7 +43,7 @@
 	<ul id="barra">
 		<!-- <li><a href="listar_profes">Profesores</a></li> -->
 		<li><a href="listar_alumnos">Alumnos</a></li>
-		<li><a href="listar_asignaturas">Asignaturas</a></li>
+		<li><a href="listar_asignaturas?vengode=''">Asignaturas</a></li>
 	</ul>
 	<br>
 	<br>
