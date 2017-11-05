@@ -78,7 +78,7 @@
 
 	<div align="center">
 		<table border="1" cellpadding="5">
-			<caption>Listado de alumnos</caption>
+			<caption style="font: oblique bold 120% cursive" >Listado de alumnos</caption>
 			<tr>
 				<th>ID_Alumno</th>
 				<th>Nombre</th>

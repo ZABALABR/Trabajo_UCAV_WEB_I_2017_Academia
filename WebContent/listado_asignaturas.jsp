@@ -59,8 +59,9 @@
 
 
 	<div align="center">
+	    
 		<table border="1" cellpadding="5">
-			<caption>Listado de asignaturas</caption>
+			<caption style="font: oblique bold 120% cursive" >Listado de asignaturas</caption>
 			<tr>
 				<th>ID</th>
 				<th>Asignatura</th>

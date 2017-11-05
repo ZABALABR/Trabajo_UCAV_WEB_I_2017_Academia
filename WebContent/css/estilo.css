@@ -113,3 +113,6 @@ td>table {
 	margin-top: -2px;
 	padding-bottom: 12px;
 }
+caption>table {
+	font: oblique bold 120% cursive;
+}
