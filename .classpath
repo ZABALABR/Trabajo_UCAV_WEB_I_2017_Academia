@@ -24,5 +24,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/apache-tomcat-9.0.0.M26/lib/gson-2.8.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

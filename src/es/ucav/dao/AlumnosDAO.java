@@ -273,6 +273,45 @@ public List<Alumno> Listar_Alumnos() throws SQLException {
  }
 
 
+public List<String> Listar_Alumnos_Asignatura(int id_asignatura, String sEn) throws SQLException {
+	List<String> list = new ArrayList<String>();
+
+    String sql;
+if (sEn.equals("SI")){
+	sql = " SELECT a.id_alumno, nombre, apellido1, apellido2 FROM `alumnos` a LEFT JOIN alumnos_asignaturas  b ON (a.id_alumno=b.id_alumno) WHERE b.id_asignatura = ? ";
+}
+else{
+	sql = " SELECT a.id_alumno, nombre, apellido1, apellido2 FROM `alumnos` a LEFT JOIN alumnos_asignaturas  b ON (a.id_alumno=b.id_alumno) WHERE b.id_asignatura <> ?  or b.id_asignatura IS NULL";
+}
+
+
+    
+  
+     
+    //connect();
+     
+    PreparedStatement statement = con.ObtenerConexionPool().prepareStatement(sql);
+    ResultSet resultSet = statement.executeQuery(sql);
+     
+    while (resultSet.next()) {
+        int l_id_Alumno = resultSet.getInt("id_alumno");
+        String l_nombre = resultSet.getString("nombre");
+        String l_apellido1 = resultSet.getString("apellido1");
+        String l_apellido2 = resultSet.getString("apellido2");
+        //String l_usuario = resultSet.getString("usuario");
+       
+
+        
+        list.add(l_id_Alumno +":" + l_nombre + " " + l_apellido1 + " " + l_apellido2 );
+    }
+     
+    resultSet.close();
+    statement.close();
+    con.devolverConexionPool(); 
+    //disconnect();
+     
+    return list;
+ }
  
 public boolean deleteAlumno(Alumno alumno) throws SQLException {
 	

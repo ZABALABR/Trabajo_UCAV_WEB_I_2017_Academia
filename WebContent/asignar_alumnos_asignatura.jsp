@@ -34,11 +34,12 @@ $(document).ready(function() {
 
 $('#asignaturas').change(function(event) {
         var asignaturas = $("select#asignaturas").val();
-        $.get('JsonServlet', {
-                sportsName : sports
+        $.get('alumnos_asignatura', {
+                id_asignatura : asignaturas,
+                En : "SI"
         }, function(response) {
 
-        var select = $('#player');
+        var select = $('#alumnos');
         select.find('option').remove();
           $.each(response, function(index, value) {
           $('<option>').val(value).text(value).appendTo(select);
