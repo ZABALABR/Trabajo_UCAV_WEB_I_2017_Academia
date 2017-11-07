@@ -278,10 +278,10 @@ public List<String> Listar_Alumnos_Asignatura(int id_asignatura, String sEn) thr
 
     String sql;
 if (sEn.equals("SI")){
-	sql = " SELECT a.id_alumno, nombre, apellido1, apellido2 FROM `alumnos` a LEFT JOIN alumnos_asignaturas  b ON (a.id_alumno=b.id_alumno) WHERE b.id_asignatura = ? ";
+	sql = " SELECT a.id_alumno, nombre, apellido1, apellido2 FROM alumnos a LEFT JOIN alumnos_asignaturas  b ON (a.id_alumno=b.id_alumno) WHERE b.id_asignatura = ? ";
 }
 else{
-	sql = " SELECT a.id_alumno, nombre, apellido1, apellido2 FROM `alumnos` a LEFT JOIN alumnos_asignaturas  b ON (a.id_alumno=b.id_alumno) WHERE b.id_asignatura <> ?  or b.id_asignatura IS NULL";
+	sql = " SELECT a.id_alumno, nombre, apellido1, apellido2 FROM alumnos a LEFT JOIN alumnos_asignaturas  b ON (a.id_alumno=b.id_alumno) WHERE b.id_asignatura <> ?  or b.id_asignatura IS NULL";
 }
 
 
@@ -291,7 +291,8 @@ else{
     //connect();
      
     PreparedStatement statement = con.ObtenerConexionPool().prepareStatement(sql);
-    ResultSet resultSet = statement.executeQuery(sql);
+    statement.setInt(1, id_asignatura);
+    ResultSet resultSet = statement.executeQuery();
      
     while (resultSet.next()) {
         int l_id_Alumno = resultSet.getInt("id_alumno");
