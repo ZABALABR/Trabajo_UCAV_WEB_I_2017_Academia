@@ -36,7 +36,7 @@ $('#asignaturas').change(function(event) {
         var asignaturas = $("select#asignaturas").val();
         $.get('alumnos_asignatura', {
                 id_asignatura : asignaturas,
-                En : "SI"
+                En : "NO"
         }, function(response) {
 
         var select = $('#alumnos');
@@ -46,6 +46,21 @@ $('#asignaturas').change(function(event) {
       });
         });
         });
+$('#asignaturas').change(function(event) {
+    var asignaturas = $("select#asignaturas").val();
+    $.get('alumnos_asignatura', {
+            id_asignatura : asignaturas,
+            En : "SI"
+    }, function(response) {
+
+    var select = $('#alumnos_asig');
+    select.find('option').remove();
+      $.each(response, function(index, value) {
+      $('<option>').val(value).text(value).appendTo(select);
+  });
+    });
+    });        
+      
 });
 </script>
 </head>
@@ -61,6 +76,12 @@ $('#asignaturas').change(function(event) {
         <br /> <br /> 
         Alumnos a asignar:
         <select id="alumnos">
+                <option>Selecciona alumno</option>
+        </select>
+        
+               <br /> <br /> 
+        Alumnos asignados:
+        <select id="alumnos_asig">
                 <option>Selecciona alumno</option>
         </select>
 </body>
