@@ -1,6 +1,6 @@
 <%@ page import="es.ucav.util.ConexionBBDD"%>
 <%@ page import="es.ucav.servlets.*"%>
-
+<%@ page import="java.util.List"%>
 <%@ page import="java.io.*"%>
 <%@ page import="javax.servlet.*"%>
 <%@ page import="javax.servlet.annotation.*"%>
@@ -26,10 +26,50 @@
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+
 <link rel="stylesheet" href="css/estilo.css" />
 <script src="js/jquery-1.11.1.js" type="text/javascript"></script>
 
 <script>
+
+$().ready(function() 
+		{
+			$('.pasar').click(function() { return !$('#alumnos option:selected').remove().appendTo('#alumnos_asig'); });  
+			$('.quitar').click(function() { return !$('#alumnos_asig option:selected').remove().appendTo('#alumnos'); });
+			$('.pasartodos').click(function() { $('#origen option').each(function() { $(this).remove().appendTo('#destino'); }); });
+			$('.quitartodos').click(function() { $('#destino option').each(function() { $(this).remove().appendTo('#origen'); }); });
+			$('.submit').click(function() { $('#destino option').prop('selected', 'selected'); });
+			$('.guardar').click(function() { 
+				 var asignaturas = $("select#asignaturas").val();
+				 
+				 //var lista_alumnos = $("#alumnos_asig")
+				var lista=""; 
+				$('#alumnos_asig option').each(function() {  lista = lista + ($(this).val()) + ","; });
+				 
+				 $.get('guardar_alumnos_asig', {id_asignatura : asignaturas, alumnos : lista  }
+				 //$.get('guardar_alumnos_asig', {id_asignatura : asignaturas, alumnos : lista  }
+				 , function(response) {
+				
+					 var label = $('#resultado');
+					 
+					   $.each(response, function(index, value) {
+						   alert( value + " is " + index );
+						   alert( value.textContent ); 
+					          $('#resultado').text(value);
+					   });
+					
+				 });
+				 });
+		});
+		
+		
+		
+
 $(document).ready(function() {
 
 $('#asignaturas').change(function(event) {
@@ -65,24 +105,91 @@ $('#asignaturas').change(function(event) {
 </script>
 </head>
 <body>
-<h3>Asignar alumnos a una asignatura</h3>
-        Seleccionar la asignatura:
-        <select id="asignaturas">
-              <option>Selecciona la asignatura</option>
-              <c:forEach var="asignatura" items="${ListaAsignaturas}">
-              <option value ="${asignatura.id_asignatura}" ><c:out value="${asignatura.descripcion}"/></option> 
-              </c:forEach>
-        </select>
-        <br /> <br /> 
-        Alumnos a asignar:
-        <select id="alumnos">
-                <option>Selecciona alumno</option>
-        </select>
-        
-               <br /> <br /> 
-        Alumnos asignados:
-        <select id="alumnos_asig">
-                <option>Selecciona alumno</option>
-        </select>
+
+<div class ="container">
+       <br>
+      
+                <div class= "row">
+		         <h3 class="col-xs-12">Asignar alumnos a una asignatura</h3>
+		        </div>
+				<div class ="row">
+				  <div class="form-group">
+	                    <label for="asignaturas" >Seleccionar la asignatura</label>
+				         
+				        <select class="form-control" id="asignaturas">
+				              <option>Selecciona la asignatura</option>
+				              <c:forEach var="asignatura" items="${ListaAsignaturas}">
+				              <option value ="${asignatura.id_asignatura}" ><c:out value="${asignatura.descripcion}"/></option> 
+				              </c:forEach>
+				        </select>
+				     </div>
+				</div>     
+				<div class ="row">
+				<form action="" class= "form-inline" >
+				  <div class ="form-group ">  
+				       <div>
+				         <label for="alumnos" >Alumnos a asignar:</label>
+				         
+				        <select style="width: 250px;" class="form-control" id="alumnos" multiple >
+				                <option>Selecciona alumno</option>
+				        </select>
+				        </div>
+				  </div>      
+                  <div class="form-group"> 
+                          <div >
+                          
+                         <label class="invisible">XXX</label>
+                          </div>
+                   </div> 					  
+	             <div class="form-group"> 
+                          <div >
+                                <label class="invisible">XXX</label>
+                                <button class="btn btn-lg btn-primary btn-block quitar" >Quitar <<</button>
+                                <button class="btn btn-lg btn-primary btn-block pasar" >Asignar >></button>
+                          </div>
+                   </div> 				
+                  <div class="form-group"> 
+                          <div >
+                          
+                         <label class="invisible">XXX</label>
+                          </div>
+                   </div> 	
+	                   			  
+				  <div class="form-group ">
+				      <div>        
+				        <label for="alumnos_asig" >Alumnos asignados:</label>       
+				        
+				        <select style="width: 250px;" class="form-control"  name="alumnos_asig" id="alumnos_asig" multiple>
+				                <option>Selecciona alumno</option>
+				        </select>
+				      </div>
+				  </div>      
+				  </form>
+			   </div> 
+			      
+</div>		
+
+                  <div class="form-group"> 
+                          <div >
+                          
+                         <label class="invisible">XXX</label>
+                          </div>
+                   </div> 
+                  <div class="row">
+                   <div class="col-md-1">
+                          
+                         <label class="invisible">XXX</label>
+                   </div>
+                   <div class="col-md-4">
+                       <button class="btn btn-lg  btn-success guardar" >Guardar cambios </button>       
+                  </div>	
+                  
+                   <div class="col-md-1">
+                          
+                         <label class="" id="resultado"></label>
+                   </div>                  
+                  </div>	
+
+		        
 </body>
 </html>

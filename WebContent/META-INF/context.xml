@@ -3,5 +3,5 @@
 	<!-- Specify a JDBC datasource for oracle -->
 	<Resource name="jdbc/DBAcademia" auth="Container" type="javax.sql.DataSource"
 		username="root" password="root" driverClassName="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://192.168.114.128/DBAcademia" maxActive="10" maxIdle="4" />
+		url="jdbc:mysql://192.168.114.131/DBAcademia" maxActive="10" maxIdle="4" />
 </Context>
