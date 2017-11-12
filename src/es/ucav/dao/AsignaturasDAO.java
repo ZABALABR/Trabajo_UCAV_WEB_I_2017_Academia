@@ -7,6 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+
+import java.sql.Connection;
+
 import java.util.ArrayList;
 //import java.util.Vector;
 
@@ -62,6 +65,84 @@ public boolean Add_Asignatura(Asignatura asignatura) throws SQLException {
     
 
 }
+
+
+public boolean Asignar_Alumnos(Asignatura asignatura, String[] lista_alumnos ) throws SQLException {
+	 String sql;
+	Connection conexion = null;
+	PreparedStatement statement1 = null;
+	PreparedStatement statement2 = null;
+	boolean rowInserted = false;
+	try {
+	        conexion=con.ObtenerConexionPool();   
+	        conexion.setAutoCommit(false); 
+	        
+	        
+	
+		    //1.-borramos todos los alumnos asignados a esa asignatura para volverlos a insertar en el paso 2 con los que vienen por parametro
+		   sql = "delete from DBAcademia.alumnos_asignaturas where  id_asignatura = ? ";
+		    
+    
+		   statement1 = conexion.prepareStatement(sql);
+		    statement1.setInt(1, asignatura.getId_asignatura());
+		    rowInserted = statement1.executeUpdate() > 0;
+		    
+    //2.- recorrremos la lista de alumnos y los insertamos en la tabla alumnos_asignaturas
+    
+    for (String individualValue: lista_alumnos ) {           
+        //play with individual dropdown item here, for example
+        sql = "insert into DBAcademia.alumnos_asignaturas values ( ?,?) ";
+        
+        
+        statement2 = conexion.prepareStatement(sql);
+        statement2.setInt(1, asignatura.getId_asignatura());
+        statement2.setInt(2, Integer.parseInt(individualValue));
+        rowInserted = statement2.executeUpdate() > 0;
+    	
+        System.out.println(individualValue);
+    }
+ //  statement.setInt(1, asignatura.getId_horario());
+     
+    if  (rowInserted ) {
+  	  conexion.commit();
+      }else { 
+      	 conexion.rollback();
+      }
+      
+      
+  	return rowInserted ;  
+      
+      
+      
+     
+      	
+      } catch (SQLException e) {
+
+  		System.out.println(e.getMessage());
+  		 conexion.rollback();
+  		rowInserted  = false;
+  		 return rowInserted ;  
+
+  	} finally {
+  		
+  		if (statement1 != null) {
+  			statement1.close();
+  		}
+
+  		if (statement2 != null) {
+  			statement2.close();
+  		}
+
+  		if (conexion != null) {
+  			  con.devolverConexionPool(); 
+  		}
+
+  	}
+  }   
+    
+    
+
+
  
 public List<Asignatura> Listar_Asignaturas() throws SQLException {
     List<Asignatura> ListaAsignaturas = new ArrayList<>();

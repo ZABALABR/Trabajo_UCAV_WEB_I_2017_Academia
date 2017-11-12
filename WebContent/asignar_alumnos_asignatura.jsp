@@ -9,6 +9,7 @@
 <%@ page import="javax.naming.*"%>
 <%@ page import="javax.sql.*"%>
 
+<%@ page import="org.json.JSONObject"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -39,8 +40,8 @@
 
 $().ready(function() 
 		{
-			$('.pasar').click(function() { return !$('#alumnos option:selected').remove().appendTo('#alumnos_asig'); });  
-			$('.quitar').click(function() { return !$('#alumnos_asig option:selected').remove().appendTo('#alumnos'); });
+			$('.pasar').click(function() { var label = $('#resultado'); $('#resultado').text("");return !$('#alumnos option:selected').remove().appendTo('#alumnos_asig'); });  
+			$('.quitar').click(function() {  var label = $('#resultado'); $('#resultado').text(""); return !$('#alumnos_asig option:selected').remove().appendTo('#alumnos'); });
 			$('.pasartodos').click(function() { $('#origen option').each(function() { $(this).remove().appendTo('#destino'); }); });
 			$('.quitartodos').click(function() { $('#destino option').each(function() { $(this).remove().appendTo('#origen'); }); });
 			$('.submit').click(function() { $('#destino option').prop('selected', 'selected'); });
@@ -58,8 +59,8 @@ $().ready(function()
 					 var label = $('#resultado');
 					 
 					   $.each(response, function(index, value) {
-						   alert( value + " is " + index );
-						   alert( value.textContent ); 
+						   //alert( value + " is " + index );
+						  
 					          $('#resultado').text(value);
 					   });
 					
@@ -73,6 +74,9 @@ $().ready(function()
 $(document).ready(function() {
 
 $('#asignaturas').change(function(event) {
+			var label = $('#resultado');
+			 $('#resultado').text("");
+
         var asignaturas = $("select#asignaturas").val();
         $.get('alumnos_asignatura', {
                 id_asignatura : asignaturas,
@@ -81,8 +85,11 @@ $('#asignaturas').change(function(event) {
 
         var select = $('#alumnos');
         select.find('option').remove();
+        //JSONObject json = new JSONObject(response);
+        //var contact = JSON.parse(jsontext); 
           $.each(response, function(index, value) {
-          $('<option>').val(value).text(value).appendTo(select);
+    
+          $('<option>').val(value.id_alumno).text(value.nombre_completo).appendTo(select);
       });
         });
         });
@@ -96,7 +103,8 @@ $('#asignaturas').change(function(event) {
     var select = $('#alumnos_asig');
     select.find('option').remove();
       $.each(response, function(index, value) {
-      $('<option>').val(value).text(value).appendTo(select);
+    
+      $('<option>').val(value.id_alumno).text(value.nombre_completo).appendTo(select);
   });
     });
     });        
@@ -167,7 +175,7 @@ $('#asignaturas').change(function(event) {
 				  </form>
 			   </div> 
 			      
-</div>		
+	
 
                   <div class="form-group"> 
                           <div >
@@ -176,20 +184,20 @@ $('#asignaturas').change(function(event) {
                           </div>
                    </div> 
                   <div class="row">
-                   <div class="col-md-1">
+                   <div class="col-md-0">
                           
                          <label class="invisible">XXX</label>
                    </div>
                    <div class="col-md-4">
                        <button class="btn btn-lg  btn-success guardar" >Guardar cambios </button>       
                   </div>	
-                  
-                   <div class="col-md-1">
+                    
+                   <div class="col-md-4">
                           
                          <label class="" id="resultado"></label>
                    </div>                  
                   </div>	
 
-		        
+	</div>		        
 </body>
 </html>

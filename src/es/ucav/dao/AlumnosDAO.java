@@ -273,6 +273,48 @@ public List<Alumno> Listar_Alumnos() throws SQLException {
  }
 
 
+public List<Alumno> Lista_Alumnos_X_Asignatura(int id_asignatura, String sEn) throws SQLException {
+    List<Alumno> ListaAlumnos = new ArrayList<>();
+     
+    //String sql = "SELECT * FROM alumnos";
+    String sql;
+    
+    if (sEn.equals("SI")){
+    	sql = " SELECT a.id_alumno, nombre, apellido1, apellido2, usuario FROM alumnos a LEFT JOIN alumnos_asignaturas  b ON (a.id_alumno=b.id_alumno) WHERE b.id_asignatura = ? ";
+    }
+    else{
+    	sql = " SELECT  id_alumno, nombre, apellido1, apellido2, usuario FROM alumnos WHERE id_alumno NOT IN ( SELECT id_alumno  FROM alumnos_asignaturas  WHERE id_asignatura = ? )";
+    }
+    
+    //connect();
+    PreparedStatement statement = con.ObtenerConexionPool().prepareStatement(sql);
+    statement.setInt(1, id_asignatura);
+    ResultSet resultSet = statement.executeQuery();
+        
+ 
+     
+    while (resultSet.next()) {
+        int l_id_Alumno = resultSet.getInt("id_alumno");
+        String l_nombre = resultSet.getString("nombre");
+        String l_apellido1 = resultSet.getString("apellido1");
+        String l_apellido2 = resultSet.getString("apellido2");
+        String l_usuario = resultSet.getString("usuario");
+        
+        //float price = resultSet.getFloat("precio");
+         
+        Alumno alumno = new Alumno(l_id_Alumno, l_nombre, l_apellido1, l_apellido2,l_usuario);
+        ListaAlumnos.add(alumno);
+    }
+     
+    resultSet.close();
+    statement.close();
+    con.devolverConexionPool(); 
+    //disconnect();
+     
+    return ListaAlumnos;
+ }
+
+
 public List<String> Listar_Alumnos_Asignatura(int id_asignatura, String sEn) throws SQLException {
 	List<String> list = new ArrayList<String>();
 

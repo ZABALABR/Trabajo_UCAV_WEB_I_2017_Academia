@@ -58,9 +58,15 @@ public class Servlet_Alumnos_Asignaturas extends HttpServlet {
 		// List<String> list = new ArrayList<String>();
 		try {
 			 alumnosDAO = new AlumnosDAO();	
-			 List<String> list = alumnosDAO.Listar_Alumnos_Asignatura(id_asignatura, sEn);
+			 List<Alumno> ListaAlumnos;
+			 ListaAlumnos = alumnosDAO.Lista_Alumnos_X_Asignatura(id_asignatura, sEn);
+			 //List<String> list = alumnosDAO.Listar_Alumnos_Asignatura(id_asignatura, sEn);
+			 
 			 String json = null;
-			 json = new Gson().toJson(list);
+			 //json = new Gson().toJson(list);
+			 json = new Gson().toJson(ListaAlumnos);
+			 
+			
              response.setContentType("application/json");
              response.getWriter().write(json);
 /*		    RequestDispatcher dispatcher = request.getRequestDispatcher("listado_alumnos.jsp");

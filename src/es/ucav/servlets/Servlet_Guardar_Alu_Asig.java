@@ -17,8 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 //import javax.sql.DataSource;
 
 import es.ucav.beans.Alumno;
+import es.ucav.beans.Asignatura;
 //import es.ucav.beans.Profesor;
 import es.ucav.dao.AlumnosDAO;
+import es.ucav.dao.AsignaturasDAO;
+
 import com.google.gson.Gson;
 
 
@@ -28,7 +31,7 @@ import com.google.gson.Gson;
 @WebServlet("/guardar_alumnos_asig")
 public class Servlet_Guardar_Alu_Asig extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private AlumnosDAO alumnosDAO;
+	private AsignaturasDAO asignaturasDAO;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -54,20 +57,25 @@ public class Servlet_Guardar_Alu_Asig extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		//try {
+		try {
 		int id_asignatura = Integer.parseInt(request.getParameter("id_asignatura").trim());
 		//String[] values = request.getParameterValues("alumnos");
 		String values = request.getParameter("alumnos");
 		// List<String> list = new ArrayList<String>();
-	       
+		boolean rowInserted = false;   
 			
-		    String[] valueArray = values.split(","); //split string by ,
-		    //do your array stuff here, for example
-		    for (String individualValue: valueArray ) {           
-		        //play with individual dropdown item here, for example
-		        System.out.println(individualValue);
-		    }
-		   
+
+	    String[] valueArray = values.split(","); //split string by ,
+	    
+		asignaturasDAO = new AsignaturasDAO();	
+        Asignatura asignatura =new Asignatura(id_asignatura,"","","");
+        rowInserted = asignaturasDAO.Asignar_Alumnos(asignatura, valueArray);
+		
+	 
+	    
+	    
+	    
+	   
 		    
 			
 /*			response.setContentType("text/html");
@@ -81,12 +89,18 @@ public class Servlet_Guardar_Alu_Asig extends HttpServlet {
 			 
 			 
 			out.println("Guardado corrrectamente!!!!" +  values );*/
+        String respuestaJSON;
+			if (rowInserted) {
+		       respuestaJSON = "{\"resultado\":\"Guardado correctamente!!!!\"}";
+			}
+		    else {
+		    	 respuestaJSON = "{\"resultado\":\"Error al guardar!!!!\"}";
+		    }
 			
-		    final String respuestaJSON = "{\"resultado\":\"Guardado correctamente\"}";
-			
+			/*
 			 String json = null;
 			 json = new Gson().toJson(values);
-			 json = new Gson().toJson(values);
+		*/
 			 
 			 response.setContentType("application/json");
              response.getWriter().write(respuestaJSON);
@@ -109,13 +123,13 @@ public class Servlet_Guardar_Alu_Asig extends HttpServlet {
 	        dispatcher.forward(request, response);*/
 			
 			
-		/*} catch (SQLException e) {
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
 			out.println("Error al guardar!!!!");
-		}*/
+		}
 		
       
     
