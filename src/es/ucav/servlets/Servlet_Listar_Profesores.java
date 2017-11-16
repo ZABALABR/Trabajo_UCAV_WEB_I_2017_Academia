@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 //import javax.sql.DataSource;
 
+import com.google.gson.Gson;
+
 import es.ucav.beans.Profesor;
 import es.ucav.dao.ProfesoresDAO;
 
@@ -50,13 +52,18 @@ public class Servlet_Listar_Profesores extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 		List<Profesor> ListaProfesores;
 		try {
 			 profesoresDAO = new ProfesoresDAO();	
 			ListaProfesores = profesoresDAO.Listar_Profesores();
-			request.setAttribute("ListaProfesores", ListaProfesores);
-		    RequestDispatcher dispatcher = request.getRequestDispatcher("index_admin.jsp");
-	        dispatcher.forward(request, response);
+
+				request.setAttribute("ListaProfesores", ListaProfesores);
+				RequestDispatcher dispatcher;
+		         dispatcher = request.getRequestDispatcher("index_admin.jsp");
+		         dispatcher.forward(request, response);
+		       
+	        
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

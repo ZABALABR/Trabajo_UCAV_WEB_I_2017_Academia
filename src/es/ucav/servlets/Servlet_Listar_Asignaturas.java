@@ -60,6 +60,7 @@ public class Servlet_Listar_Asignaturas extends HttpServlet {
 			request.setAttribute("ListaAsignaturas", ListaAsignaturas);
 			RequestDispatcher dispatcher;
 			if (sivengode.equals("asignar"))  {
+				     
 					 dispatcher = request.getRequestDispatcher("asignar_alumnos_asignatura.jsp");	
 			}else {
 		             dispatcher = request.getRequestDispatcher("listado_asignaturas.jsp");

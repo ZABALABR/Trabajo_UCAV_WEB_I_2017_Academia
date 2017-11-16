@@ -8,7 +8,7 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="javax.naming.*"%>
 <%@ page import="javax.sql.*"%>
-
+ 
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -17,13 +17,23 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> -->
+<!DOCTYPE html> 
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
+ 
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+ -->
+ <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap.css">
+
 <link rel="stylesheet" href="css/estilo.css" />
 
 
@@ -35,13 +45,38 @@
 
 
 %>
+
+
 </head>
 <body>
+<div class="container">
+
+
+          
 	<%--  <h1>Hola Administrador <%=session.getAttribute("usuario") %></h1> --%>
 	<center>
 		<h1>Gestión de asignaturas</h1>
 	</center>
-
+	<div id="example" class="modal hide fade in" data-backdrop="static" data-keyboard="false"  style="display: none; ">
+           <div class="modal-header">
+             <a class="close" data-dismiss="modal">x</a>
+             <h3>Asignar profesor</h3>
+           </div>
+           <div class="modal-body">
+	                    <label for="profesores" >Seleccionar profesor</label>
+				         
+				        <select class="form-control" id="profesores">
+				              <option>elige un profesor</option>
+<%-- 				              <c:forEach var="profe" items="${ListaProfesores}">
+				              <option value ="${profe.id_profesor}" ><c:out value="${profe.nombre}"/></option> 
+				              </c:forEach> --%>
+				        </select>	        
+           </div>
+           <div class="modal-footer">
+             <a href="index.html" class="btn btn-success">Guardar</a>
+             <a href="#" class="btn" data-dismiss="modal">Cerrar</a>
+           </div>
+    </div>
 	<ul id="barra">
 		<!-- <li><a href="listar_profes">Profesores</a></li> -->
 		<li><a href="listar_profes">Profesores</a></li>
@@ -85,8 +120,12 @@
 					</td>
 					<td>&nbsp;&nbsp;&nbsp;&nbsp; <a
 						href="horario_asignatura?id_asignatura=<c:out value='${asignatura.id_asignatura}' />">Asignar
-							horario</a>
+							horario</a>							
 					</td>
+			        <td> <a 
+			        data-toggle="modal" href="#example" class="btn btn-info btn-xs" id="profesor">ventana modal</a> 	
+					</td>
+										
 					<td>&nbsp;&nbsp;&nbsp;&nbsp; <a
 						href="profesor_asignatura?id_asignatura=<c:out value='${asignatura.id_asignatura}' />">Asignar
 							profesor</a>
@@ -100,6 +139,14 @@
 			</c:forEach>
 		</table>
 	</div>
+	
+	
+	
 
+
+ </div>
+
+<script src="js/jquery.js" type="text/javascript"></script>
+<script src="js/bootstrap-modal.js" type="text/javascript"></script>
 </body>
 </html>
