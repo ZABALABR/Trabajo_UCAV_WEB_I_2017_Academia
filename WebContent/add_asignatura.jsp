@@ -48,7 +48,34 @@
 					<td><input type="text" name="descripcion" size="45" value="" />
 					</td>
 				</tr>
-
+				<tr>
+	                <div class ="row">
+					  <div class="form-group">
+		                    <label for="horarios" >Seleccionar horario</label>
+					         
+					        <select class="form-control" id="horarios">
+					              <option>Selecciona horario</option>
+					              <c:forEach var="horario" items="${ListaHorarios}">
+					              <option value ="${horario.id_horario}" ><c:out value="${horario.descripcion}"/></option> 
+					              </c:forEach>
+					        </select>
+					     </div>
+					</div>     
+			   </tr>
+					<tr>
+	                <div class ="row">
+					  <div class="form-group">
+		                    <label for="horarios" >Seleccionar horario</label>
+					         
+					        <select class="form-control" id="profesores">
+					              <option>Selecciona profesor</option>
+					              <c:forEach var="profesor" items="${ListaProfesores}">
+					              <option value ="${profesor.id_profesor}" ><c:out value="${profesor.getNombreCompleto()}"/></option> 
+					              </c:forEach>
+					        </select>
+					     </div>
+					</div>     
+			   </tr>			
 				<tr>
 					<td colspan="2" align="center"><input type="submit"
 						value="Grabar" /></td>

@@ -38,7 +38,7 @@ public class login extends HttpServlet {
 				conn = source.getConnection();
 			}
 			Statement stm = conn.createStatement();
-			ResultSet rs = stm.executeQuery("SELECT b.`inicio` FROM usuarios a INNER JOIN roles  b ON (a.id_rol = b.id_rol) where usuario='"+user+"' and contraseña='"+password+"'");
+			ResultSet rs = stm.executeQuery("SELECT b.`inicio` FROM usuarios a INNER JOIN roles  b ON (a.id_rol = b.id_rol) where usuario='"+user+"' and contraseÃ±a='"+password+"'");
 			if(rs.next()) {
 				String pag_inicio = rs.getString(1);  
 				HttpSession sesion = request.getSession();

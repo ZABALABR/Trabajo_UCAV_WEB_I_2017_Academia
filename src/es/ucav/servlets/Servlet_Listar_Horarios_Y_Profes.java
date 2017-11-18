@@ -14,19 +14,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 //import javax.sql.DataSource;
 
+//import com.google.gson.Gson;
 
-
+import es.ucav.beans.Horario;
 import es.ucav.beans.Profesor;
+import es.ucav.dao.HorariosDAO;
 import es.ucav.dao.ProfesoresDAO;
 
 
 /**
  * Servlet implementation class Servlet_Listar
  */
-@WebServlet("/listar_profes")
-public class Servlet_Listar_Profesores extends HttpServlet {
+@WebServlet("/horarios_y_profes")
+public class Servlet_Listar_Horarios_Y_Profes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ProfesoresDAO profesoresDAO;
+	private HorariosDAO horariosDAO;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -54,13 +57,17 @@ public class Servlet_Listar_Profesores extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		List<Profesor> ListaProfesores;
+		List<Horario> ListaHorarios;
 		try {
-			 profesoresDAO = new ProfesoresDAO();	
-			ListaProfesores = profesoresDAO.Listar_Profesores();
-
+		    horariosDAO = new HorariosDAO();	
+		    ListaHorarios = horariosDAO.Listar_Horarios();
+			request.setAttribute("ListaHorarios", ListaHorarios);
+			
+			    profesoresDAO = new ProfesoresDAO();	
+  			    ListaProfesores = profesoresDAO.Listar_Profesores_Sin_Asignatura();
 				request.setAttribute("ListaProfesores", ListaProfesores);
 				RequestDispatcher dispatcher;
-		         dispatcher = request.getRequestDispatcher("index_admin.jsp");
+		         dispatcher = request.getRequestDispatcher("add_asignatura.jsp");
 		         dispatcher.forward(request, response);
 		       
 	        

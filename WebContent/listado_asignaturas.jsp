@@ -86,7 +86,7 @@
 	<br>
 	<center>
 		<h2>
-			<a href="add_asignatura.jsp">Alta asignatura</a> &nbsp;&nbsp;&nbsp; <a
+			<a href="horarios_y_profes">Alta asignatura</a> &nbsp;&nbsp;&nbsp; <a
 				href="listar_asignaturas?vengode=asignar">Asignar alumnos</a> &nbsp;&nbsp;&nbsp;
 			<!-- <a href="listar">Listado de profesores</a> -->
 

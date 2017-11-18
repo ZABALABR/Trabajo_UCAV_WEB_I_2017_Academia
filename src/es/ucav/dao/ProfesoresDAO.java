@@ -272,7 +272,36 @@ public List<Profesor> Listar_Profesores() throws SQLException {
     return ListaProfesores;
  }
 
-
+public List<Profesor> Listar_Profesores_Sin_Asignatura() throws SQLException {
+    List<Profesor> ListaProfesores = new ArrayList<>();
+     
+    String sql = "SELECT * FROM profesores a  left join asignaturas b on (a.id_profesor=b.id_profesor and b.id_profesor is null) ";
+     
+    //connect();
+     
+    PreparedStatement statement = con.ObtenerConexionPool().prepareStatement(sql);
+    ResultSet resultSet = statement.executeQuery(sql);
+     
+    while (resultSet.next()) {
+        int l_id_profesor = resultSet.getInt("id_profesor");
+        String l_nombre = resultSet.getString("nombre");
+        String l_apellido1 = resultSet.getString("apellido1");
+        String l_apellido2 = resultSet.getString("apellido2");
+        String l_usuario = resultSet.getString("usuario");
+        
+        //float price = resultSet.getFloat("precio");
+         
+        Profesor profesor = new Profesor(l_id_profesor, l_nombre, l_apellido1, l_apellido2,l_usuario);
+        ListaProfesores.add(profesor);
+    }
+     
+    resultSet.close();
+    statement.close();
+    con.devolverConexionPool(); 
+    //disconnect();
+     
+    return ListaProfesores;
+ }
  
 public boolean deleteProfesor(Profesor profesor) throws SQLException {
     String sql = "DELETE FROM profesores where id_profesor = ?";

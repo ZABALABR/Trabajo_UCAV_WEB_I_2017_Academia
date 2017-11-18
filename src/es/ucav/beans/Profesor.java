@@ -7,6 +7,7 @@ public class Profesor {
 	private String nombre;
 	private String apellido1;
 	private String apellido2;
+	private String nombre_completo;
 	private String usuario;
 	
 	
@@ -27,6 +28,7 @@ public class Profesor {
 		this.apellido1 = apellido1;
 		this.apellido2 = apellido2;
 		this.usuario= usuario;
+		this.nombre_completo= nombre + ' ' + apellido1 + ' ' + apellido2; 
 		//this.usuario = nombre + '_' + id_profesor;
 	}
 	public int getId_profesor() {
@@ -44,6 +46,11 @@ public class Profesor {
 	public String getUsuario() {
 		return usuario;
 	}
+	
+	public String getNombreCompleto() {
+		return nombre_completo;
+	}
+	
 	public void setId_profesor(int id_profesor) {
 		this.id_profesor = id_profesor;
 	}
