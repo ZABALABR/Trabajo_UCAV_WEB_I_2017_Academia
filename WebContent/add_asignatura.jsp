@@ -5,7 +5,7 @@
 <html>
 <head>
 
-
+<link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/estilo.css" />
 <title>Gestión de asignaturas</title>
 <% 
@@ -49,32 +49,30 @@
 					</td>
 				</tr>
 				<tr>
-	                <div class ="row">
-					  <div class="form-group">
-		                    <label for="horarios" >Seleccionar horario</label>
+	                   <th>Seleccionar horario:</th>
+	                   <td>
+		                   <!--  <label for="horarios" >Seleccionar horario</label> -->
 					         
-					        <select class="form-control" id="horarios">
+					        <select class="form-control" id="horarios" name="horarios">
 					              <option>Selecciona horario</option>
 					              <c:forEach var="horario" items="${ListaHorarios}">
 					              <option value ="${horario.id_horario}" ><c:out value="${horario.descripcion}"/></option> 
 					              </c:forEach>
 					        </select>
-					     </div>
-					</div>     
+			            </td>
 			   </tr>
-					<tr>
-	                <div class ="row">
-					  <div class="form-group">
-		                    <label for="horarios" >Seleccionar horario</label>
+			   <tr>
+	                   <th>Seleccionar profesor:</th>
+	                   <td>
+		                   <!--  <label for="horarios" >Seleccionar horario</label> -->
 					         
-					        <select class="form-control" id="profesores">
+					        <select class="form-control" id="profesores" name="profesores">
 					              <option>Selecciona profesor</option>
 					              <c:forEach var="profesor" items="${ListaProfesores}">
 					              <option value ="${profesor.id_profesor}" ><c:out value="${profesor.getNombreCompleto()}"/></option> 
 					              </c:forEach>
 					        </select>
-					     </div>
-					</div>     
+				       </td>
 			   </tr>			
 				<tr>
 					<td colspan="2" align="center"><input type="submit"
@@ -83,5 +81,8 @@
 			</table>
 		</form>
 	</div>
+<script src="js/jquery.js" type="text/javascript"></script>
+<script src="js/bootstrap-modal.js" type="text/javascript"></script>	
 </body>
 </html>
+

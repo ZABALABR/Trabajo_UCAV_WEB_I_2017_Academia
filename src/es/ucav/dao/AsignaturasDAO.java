@@ -50,11 +50,12 @@ public class AsignaturasDAO {
 
 public boolean Add_Asignatura(Asignatura asignatura) throws SQLException {
 
-    String sql = "insert into DBAcademia.asignaturas ( descripcion ) values ( ?) ";
+    String sql = "insert into DBAcademia.asignaturas ( descripcion, id_horario, id_profesor ) values ( ?,?,?) ";
     
     PreparedStatement statement = con.ObtenerConexionPool().prepareStatement(sql);
     statement.setString(1, asignatura.getDescripcion());
- //  statement.setInt(1, asignatura.getId_horario());
+    statement.setInt(2, asignatura.getId_horario());
+    statement.setInt(3, asignatura.getId_profesor());
      
     boolean filasInsertadas = statement.executeUpdate() > 0;
     statement.close();
@@ -180,7 +181,43 @@ public List<Asignatura> Listar_Asignaturas() throws SQLException {
  }
 
 
- 
+public List<Asignatura> Listar_Asignaturas(String Usuario) throws SQLException {
+    List<Asignatura> ListaAsignaturas = new ArrayList<>();
+     
+    String sql = "SELECT A.descripcion AS asignatura , B.descripcion AS horario " +
+" FROM asignaturas A INNER JOIN horarios B ON (A.id_horario= B.id_horario) " + 
+" INNER JOIN alumnos_asignaturas C ON (A.id_asignatura= C.id_asignatura) " +
+" INNER JOIN alumnos D ON (C.id_alumno= D.id_alumno) " +
+" WHERE D.usuario = ?";
+	   		//" WHERE a.id_asignatura = ?";
+     
+    //connect();
+     
+    PreparedStatement statement = con.ObtenerConexionPool().prepareStatement(sql);
+    statement.setString(1, Usuario);
+    
+    ResultSet resultSet = statement.executeQuery();
+     
+    while (resultSet.next()) {
+        //int l_id_Asignatura = resultSet.getInt("id_asignatura");
+        String l_descripcion = resultSet.getString("asignatura");
+        String l_horario = resultSet.getString("horario");
+       
+  
+        
+        //float price = resultSet.getFloat("precio");
+         
+        Asignatura asignatura= new Asignatura( l_descripcion, l_horario);
+        ListaAsignaturas.add(asignatura);
+    }
+     
+    resultSet.close();
+    statement.close();
+    con.devolverConexionPool(); 
+    //disconnect();
+     
+    return ListaAsignaturas;
+ }
 public boolean deleteAsignatura(Asignatura asignatura) throws SQLException {
 	
 	
@@ -194,6 +231,7 @@ public boolean deleteAsignatura(Asignatura asignatura) throws SQLException {
     statement.close();
     con.devolverConexionPool(); 
     return rowDeleted;    
+
 }   
 }
 

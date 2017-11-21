@@ -9,7 +9,8 @@ public class Asignatura {
 	private String horario;
 	private String profesor;
 	
-	
+	private int id_horario;
+	private int id_profesor;
 	
 	
     public Asignatura() {
@@ -25,6 +26,35 @@ public class Asignatura {
 		this.descripcion = descripcion;
 		this.horario = horario;
 		this.profesor = profesor;
+	}
+	public Asignatura( String descripcion, String horario) {
+		super();
+		
+		this.descripcion = descripcion;
+		this.horario = horario;
+		
+	}
+	public int getId_horario() {
+		return this.id_horario;
+	}
+
+	public int getId_profesor() {
+		return this.id_profesor;
+	}
+
+	public void setId_horario(int id_horario) {
+		this.id_horario = id_horario;
+	}
+
+	public void setId_profesor(int id_profesor) {
+		this.id_profesor = id_profesor;
+	}
+
+	public Asignatura(String descripcion, int id_horario, int id_profesor) {
+		super();
+		this.descripcion = descripcion;
+		this.id_horario = id_horario;
+		this.id_profesor = id_profesor;
 	}
 
 	public int getId_asignatura() {

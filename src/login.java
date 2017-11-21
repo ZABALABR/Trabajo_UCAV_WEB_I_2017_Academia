@@ -42,8 +42,15 @@ public class login extends HttpServlet {
 			if(rs.next()) {
 				String pag_inicio = rs.getString(1);  
 				HttpSession sesion = request.getSession();
+				request.setAttribute("usuario", user);
 				sesion.setAttribute("usuario", user);
-				response.sendRedirect(pag_inicio);
+				//response.sendRedirect(pag_inicio);
+				RequestDispatcher dispatcher;
+				
+				dispatcher = request.getRequestDispatcher(pag_inicio);	
+		
+		        dispatcher.forward(request, response);				
+
 			}
 			else response.sendRedirect("index.html");
 			rs.close();

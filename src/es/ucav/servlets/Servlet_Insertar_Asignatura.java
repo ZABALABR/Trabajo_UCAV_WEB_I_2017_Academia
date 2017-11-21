@@ -36,7 +36,8 @@ public class Servlet_Insertar_Asignatura extends HttpServlet {
 		try {
 			
 			//System.out.println("vamos a borrar el profesor con id:" + request.getParameter("id_profesor"));
-			//int id_profe = Integer.parseInt(request.getParameter("id_profesor").trim());
+			 int id_profesor = Integer.parseInt(request.getParameter("profesores").trim());
+			 int id_horario = Integer.parseInt(request.getParameter("horarios").trim());
 			 String descripcion = request.getParameter("descripcion");
 			
 
@@ -45,9 +46,10 @@ public class Servlet_Insertar_Asignatura extends HttpServlet {
 	        
 	        
 			asignaturasDAO = new AsignaturasDAO();	
-	        Asignatura asignatura =new Asignatura(0,descripcion,"","");
+	        //Asignatura asignatura =new Asignatura(0,descripcion,"","");
+			Asignatura asignatura =new Asignatura(descripcion,id_horario,id_profesor);
 			asignaturasDAO.Add_Asignatura(asignatura);
-			 response.sendRedirect("listar_asignaturas");
+			 response.sendRedirect("listar_asignaturas?vengode=''");
 	
 			/* 
 		    RequestDispatcher dispatcher = request.getRequestDispatcher("index_admin.jsp");
@@ -55,6 +57,7 @@ public class Servlet_Insertar_Asignatura extends HttpServlet {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			 
 		}
 	}
 
