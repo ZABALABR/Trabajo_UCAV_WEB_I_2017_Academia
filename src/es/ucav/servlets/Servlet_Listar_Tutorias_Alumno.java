@@ -16,17 +16,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import es.ucav.beans.Asignatura;
+import es.ucav.beans.Tutoria;
 //import es.ucav.beans.Profesor;
 import es.ucav.dao.AsignaturasDAO;
+import es.ucav.dao.TutoriasDAO;
 
 
 /**
  * Servlet implementation class Servlet_Listar
  */
-@WebServlet("/horarios_alumno")
-public class Servlet_Listar_Horarios_Alumno extends HttpServlet {
+@WebServlet("/alu_tutorias_solicitadas")
+public class Servlet_Listar_Tutorias_Alumno extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private AsignaturasDAO asignaturasDAO;
+	private TutoriasDAO tutoriasDAO;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -52,20 +54,22 @@ public class Servlet_Listar_Horarios_Alumno extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		HttpSession session = request.getSession();
-		String usuario = (String)session.getAttribute("usuario");
-		
+		String usuario = (String)getServletContext().getAttribute("usuario");
+		request.setAttribute("usuario", usuario);
+		HttpSession sesion = request.getSession();
+		sesion.setAttribute("usuario", usuario);
+		 //String usu = request.getParameter("usuario");
 		//String usuario = (String)request.getAttribute("usuario");
 	
-	
-		List<Asignatura> ListaHorario;
+	   
+		List<Tutoria> ListaTutorias;
 		try {
-			 asignaturasDAO = new AsignaturasDAO();	
-			 ListaHorario = asignaturasDAO.Listar_Asignaturas(usuario);
-			request.setAttribute("ListaHorario", ListaHorario);
+			 tutoriasDAO = new TutoriasDAO();	
+			 ListaTutorias = tutoriasDAO.Listar_Tutorias(usuario);
+			request.setAttribute("ListaTutorias", ListaTutorias);
 			RequestDispatcher dispatcher;
 		
-			dispatcher = request.getRequestDispatcher("index_alumno.jsp");	
+			dispatcher = request.getRequestDispatcher("listado_tutorias_alumno.jsp");	
 	
 	        dispatcher.forward(request, response);
 		} catch (SQLException e) {

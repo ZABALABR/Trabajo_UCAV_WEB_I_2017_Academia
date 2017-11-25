@@ -29,6 +29,8 @@
 
 <title>Administrador</title>
 <% 
+    application.setAttribute("usuario", session.getAttribute("usuario"));
+
 	if(session.getAttribute("usuario")==null) {
         response.sendRedirect("index.html");
     }
@@ -42,8 +44,8 @@
 
 	<ul id="barra">
 		<!-- <li><a href="listar_profes">Profesores</a></li> -->
-		<li><a href="listar_alumnos">Gestion de tutorias</a></li>
-	
+		<li><a href="alu_tutorias_solicitadas">Gestion de tutorias</a></li>
+
 	</ul>
 	<br>
 	<br>
