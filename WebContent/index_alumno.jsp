@@ -30,6 +30,7 @@
 <title>Administrador</title>
 <% 
     application.setAttribute("usuario", session.getAttribute("usuario"));
+    application.setAttribute("id_alumno", session.getAttribute("id_alumno"));
 
 	if(session.getAttribute("usuario")==null) {
         response.sendRedirect("index.html");

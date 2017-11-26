@@ -58,7 +58,7 @@ public boolean Add_Tutoria(Tutoria tutoria) throws SQLException {
     statement.setString(1, tutoria.getFecha());
     statement.setInt(2, tutoria.getId_profesor());
     statement.setInt(3, tutoria.getId_alumno());
-    statement.setString(4, tutoria.getEstado());
+    statement.setInt(4, tutoria.getId_estado());
     
  //  statement.setInt(1, asignatura.getId_horario());
      

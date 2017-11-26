@@ -56,7 +56,7 @@
           
 	<%--  <h1>Hola Administrador <%=session.getAttribute("usuario") %></h1> --%>
 	<center>
-		<h1>Gestión de asignaturas</h1>
+		<h1>Gestión de tutorias</h1>
 	</center>
 	
 	<ul id="barra">
@@ -68,7 +68,7 @@
 	<br>
 	<center>
 		<h2>
-			<a href="horarios_y_profes">Solicitar tutoria</a> 
+			<a href="solicitar_tutoria">Solicitar tutoria</a> 
 		</h2>
 	</center>
 

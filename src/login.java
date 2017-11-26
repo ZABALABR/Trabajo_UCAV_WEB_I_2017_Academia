@@ -38,12 +38,15 @@ public class login extends HttpServlet {
 				conn = source.getConnection();
 			}
 			Statement stm = conn.createStatement();
-			ResultSet rs = stm.executeQuery("SELECT b.`inicio` FROM usuarios a INNER JOIN roles  b ON (a.id_rol = b.id_rol) where usuario='"+user+"' and contraseña='"+password+"'");
+			ResultSet rs = stm.executeQuery("SELECT b.inicio,c.id_alumno  FROM usuarios a INNER JOIN roles  b ON (a.id_rol = b.id_rol)  LEFT JOIN alumnos c ON (a.usuario=c.usuario) where a.usuario='"+user+"' and a.contraseña='"+password+"'");
 			if(rs.next()) {
 				String pag_inicio = rs.getString(1);  
+				 int l_id_Alumno = rs.getInt("id_alumno"); 
 				HttpSession sesion = request.getSession();
 				request.setAttribute("usuario", user);
 				sesion.setAttribute("usuario", user);
+				sesion.setAttribute("id_alumno",l_id_Alumno);
+				
 				//response.sendRedirect(pag_inicio);
 				RequestDispatcher dispatcher;
 				
