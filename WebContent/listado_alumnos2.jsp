@@ -9,6 +9,7 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="javax.naming.*"%>
 <%@ page import="javax.sql.*"%>
+<%@ page import="es.ucav.util.ConexionBBDD"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -25,10 +26,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="css/estilo.css" />
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-<style type="text/css" class="init">
+
 	
-	</style>
+	
 
 
 <!-- <link rel="stylesheet" href="css/jquery.dataTables.min.css" /> -->
@@ -37,25 +37,11 @@
 <!-- <script src="js/jquery-1.12.4.js" type="text/javascript"></script> -->
 
 
-<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.4.js">
-</script>
-<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js">
-</script>
+
 	
 
-<script type="text/javascript" class="init">
 
-$(document).ready(function() {
-    $('#mitabla').DataTable( {
-    	 "processing": true,
-         "serverSide": true,
-         "ajax": "scripts/listar_alumnos"
-    });
-    
-   
-} );
 
-</script>
     
 <title>Administrador</title>
 <% 
@@ -86,32 +72,106 @@ $(document).ready(function() {
 
 		</h2>
 	</center>
-	<%--    <% 		
-        ConexionBBDD con =new ConexionBBDD();
-        Connection conn	= null;
-        conn = con.ObtenerConexionPool();
-		if (con.ObtenerConexionPool() != null ) {
-			System.out.println("Conexion realizada.");
+
+<%
+            ConexionBBDD con =null;
+            con =new ConexionBBDD();
+         	
 			
-		   	Statement stm = con.ObtenerConexionPool().createStatement();
-			ResultSet rs = stm.executeQuery("SELECT b.`inicio` FROM usuarios a INNER JOIN roles  b ON (a.id_rol = b.id_rol) where usuario='admin' and contraseña='admin'");
-			if(rs.next()) {
-				System.out.println("estamos en el jsp RAMON" + rs.getString(1));
-			}
-			 
-			rs.close();
-			stm.close();
-			con.devolverConexionPool();
-			//conn.close();	
-		}
+			int pagina = 0;
+			String p = request.getParameter("page"); // nº de pág
+			if(p!=null) pagina = Integer.valueOf(p);
+			else pagina = 1;
+			String query = "SELECT id_alumno, nombre, apellido1, apellido2, usuario " +
+					" FROM alumnos LIMIT "+
+			(pagina - 1) * 5 + ",5 ;";
+			Statement st =  con.ObtenerConexionPool().prepareStatement(query);
+			ResultSet rs = st.executeQuery(query);
+%>
+	<table align="center" border="1" bordercolor="black" width="80%">
+	<caption style="font: oblique bold 120% cursive" >Listado de alumnos</caption>
+		<tr align='left' bgcolor='orange'>
+			<th width='25%'>Id_Alumno</th>
+			<th width='5%' align='center'>Nombre</th>
+			<th width='15%'>Apellido1</th>
+			<th width='50%'>Apellido2</th>
+			<th width='50%'>Usuario</th>
+		</tr>
+		<%
+while (rs.next()) {
+	
+	 int l_id_Alumno = rs.getInt("id_alumno");
+     String l_nombre = rs.getString("nombre");
+     String l_apellido1 = rs.getString("apellido1");
+     String l_apellido2 = rs.getString("apellido2");
+     String l_usuario = rs.getString("usuario");
+     
+     
+
 		%>
-		 --%>
+		<tr bgcolor='white'>
+			<td><b> <%=l_id_Alumno%></b></td>
+			<td align='center'><b><%=l_nombre%></b></td>
+			<td><b><%=l_apellido1%></b></td>
+			<td><b><%=l_apellido2%></b></td>
+			<td><b><%=l_usuario%></b></td>
+			<td>
+&nbsp;&nbsp;&nbsp;&nbsp; <a
+						href="eliminar_alumno?id_alumno=<%=l_id_Alumno%>&amp;usuario=<%=l_usuario%> ">Borrar</a>
+		    </td>							
+		</tr>
+		<%
+}
+%>
+	</table>
+	<%
+		st.close();
+		query = "SELECT * FROM alumnos";
+		st =  con.ObtenerConexionPool().prepareStatement(query);
+		st.executeQuery(query);
+		rs = st.getResultSet();
+		int contador = 0;
+		while (rs.next()) contador++;
+		st.close();
+		int pages = (contador / 5);
+		if (contador != (pages * 5)){
+			pages++;
+		}
+%>
+	<table align="center">
+		<tr>
+ 
+<%
+if (pagina > 1) {
+	out.println("<td> <a href=\"?page=1\"> << </a> </td>");
+	int previousPage = pagina - 1;
+	out.println("<td><a href=\"?page="+
+	previousPage +"\"> < </a></td>");
+	out.println("<td><b> Page: "+ pagina + "</b></td>");
+}
+if (pagina == 1) {
+	out.println("<td><b> Page: "+ pagina + "</b></td>");
+}
+	if (pages > pagina) {
+	int nextPage = pagina + 1;
+	out.println("<td><a href=\"?page="+ nextPage +
+	"\"> > </a></td>");
+	out.println("<td><a href=\"?page="+ pages+"\"> " +
+	">> </a></td>");
+	}
+	con.devolverConexionPool(); 
+ %>
+		</tr>
+	</table>
 
 
-	<div align="center">
-		<table id="mitabla"  class="display" cellspacing="0" width="100%">
+
+
+
+	<%-- <div align="center">
+		<table border="1" cellpadding="5">
 			<caption style="font: oblique bold 120% cursive" >Listado de alumnos</caption>
-			 <thead>
+			
             <tr>
       			<th>ID_Alumno</th>
 				<th>Nombre</th>
@@ -119,7 +179,7 @@ $(document).ready(function() {
 				<th>Apellido2</th>
 				<th>Usuario</th>
             </tr>
-        </thead>
+      
 <!--         <tfoot>
             <tr>
     		    <th>ID_Alumno</th>
@@ -129,7 +189,7 @@ $(document).ready(function() {
 				<th>Usuario</th>
             </tr>
         </tfoot> -->
-        <tbody>
+  
 
 			<c:forEach var="alumno" items="${ListaAlumnos}">
 				<tr>
@@ -139,16 +199,16 @@ $(document).ready(function() {
 					<td><c:out value="${alumno.apellido2}" /></td>
 					<td><c:out value="${alumno.usuario}" /></td>
 					<td>
-						<%--  <a href="/edit?id=<c:out value='${profe.id_profesor}' />">Edit</a> --%>
+						 <a href="/edit?id=<c:out value='${profe.id_profesor}' />">Edit</a>
 						&nbsp;&nbsp;&nbsp;&nbsp; <a
 						href="eliminar_alumno?id_alumno=<c:out value='${alumno.id_alumno}' />&amp;usuario=<c:out value='${alumno.usuario}' />">Borrar</a>
 						<!-- <a href="eliminar_alumno?id_alumno=<c:out value='${alumno.id_alumno}' />">Borrar</a> -->
 					</td>
 				</tr>
 			</c:forEach>
-		</tbody>	
+			
 		</table>
-	</div>
+	</div> --%>
 
 
 </body>

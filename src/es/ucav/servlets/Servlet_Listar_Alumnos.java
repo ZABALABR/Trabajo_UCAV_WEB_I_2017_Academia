@@ -56,7 +56,7 @@ public class Servlet_Listar_Alumnos extends HttpServlet {
 			 alumnosDAO = new AlumnosDAO();	
 			ListaAlumnos = alumnosDAO.Listar_Alumnos();
 			request.setAttribute("ListaAlumnos", ListaAlumnos);
-		    RequestDispatcher dispatcher = request.getRequestDispatcher("listado_alumnos.jsp");
+		    RequestDispatcher dispatcher = request.getRequestDispatcher("listado_alumnos2.jsp");
 	        dispatcher.forward(request, response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
