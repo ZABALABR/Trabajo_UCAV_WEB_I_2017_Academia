@@ -26,7 +26,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="css/estilo.css" />
 
-
+<script type="text/javascript" src="js/sorttable.js"></script>
 <title>Administrador</title>
 <% 
 	if(session.getAttribute("usuario")==null) {
@@ -77,15 +77,19 @@
 
 
 	<div align="center">
-		<table border="1" cellpadding="5">
+		<table class="sortable" border="1" cellpadding="5">
 			<caption style="font: oblique bold 120% cursive">Listado de profesores</caption>
+			<thead>
 			<tr>
+			  
 				<th>ID_Profesor</th>
 				<th>Nombre</th>
 				<th>Apellido1</th>
 				<th>Apellido2</th>
 				<th>Usuario</th>
+				
 			</tr>
+			</thead>
 			<c:forEach var="profe" items="${ListaProfesores}">
 				<tr>
 					<td><c:out value="${profe.id_profesor}" /></td>

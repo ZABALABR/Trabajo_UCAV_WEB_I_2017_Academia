@@ -10,7 +10,7 @@ public class Tutoria {
 	private int id_estado;
 	
 	private String profesor;
-	private String alummno;
+	private String alumno;
 	private String estado;
 	public Tutoria(String fecha, int id_profesor, int id_alumno, int id_estado, String profesor, String alummno,
 			String estado) {
@@ -20,7 +20,7 @@ public class Tutoria {
 		this.id_alumno = id_alumno;
 		this.id_estado = id_estado;
 		this.profesor = profesor;
-		this.alummno = alummno;
+		this.alumno = alummno;
 		this.estado = estado;
 	}
 	public String getFecha() {
@@ -38,8 +38,8 @@ public class Tutoria {
 	public String getProfesor() {
 		return profesor;
 	}
-	public String getAlummno() {
-		return alummno;
+	public String getAlumno() {
+		return alumno;
 	}
 	public String getEstado() {
 		return estado;
@@ -59,8 +59,8 @@ public class Tutoria {
 	public void setProfesor(String profesor) {
 		this.profesor = profesor;
 	}
-	public void setAlummno(String alummno) {
-		this.alummno = alummno;
+	public void setAlumno(String alummno) {
+		this.alumno = alummno;
 	}
 	public void setEstado(String estado) {
 		this.estado = estado;

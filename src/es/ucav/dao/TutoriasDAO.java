@@ -71,10 +71,10 @@ public boolean Add_Tutoria(Tutoria tutoria) throws SQLException {
 public List<Tutoria> Listar_Tutorias(String usuario) throws SQLException {
     List<Tutoria> ListaTutorias = new ArrayList<>();
      
-    String sql = "SELECT a.fecha AS fecha,CONCAT(c.nombre, ' ' , c.apellido1, ' ',  c.apellido2) AS profesor , d.estado FROM tutorias a INNER JOIN alumnos b ON (a.id_alumno=b.id_alumno) \r\n" + 
-    		" INNER JOIN profesores c ON (a.id_profesor = c.id_profesor)\r\n" + 
-    		" INNER JOIN estados d ON (a.id_estado = d.id_estado)\r\n" + 
-    		" WHERE b.usuario = ? ";
+    String sql = "SELECT a.fecha AS fecha,CONCAT(c.nombre, ' ' , c.apellido1, ' ',  c.apellido2) AS profesor , d.estado FROM tutorias a INNER JOIN alumnos b ON (a.id_alumno=b.id_alumno) " + 
+    		" INNER JOIN profesores c ON (a.id_profesor = c.id_profesor) " + 
+    		" INNER JOIN estados d ON (a.id_estado = d.id_estado) " + 
+    		" WHERE b.usuario = ? AND fecha >= NOW() ";
      
     //connect();
      
@@ -101,6 +101,39 @@ public List<Tutoria> Listar_Tutorias(String usuario) throws SQLException {
     return ListaTutorias;
  }
 
+public List<Tutoria> Listar_Tutorias_Profe(String usuario) throws SQLException {
+    List<Tutoria> ListaTutorias = new ArrayList<>();
+     
+    String sql = "SELECT a.fecha AS fecha,CONCAT(b.nombre, ' ' , b.apellido1, ' ',  b.apellido2) AS alumno, b.id_alumno , d.estado FROM tutorias a INNER JOIN alumnos b ON (a.id_alumno=b.id_alumno) " + 
+    		" INNER JOIN profesores c ON (a.id_profesor = c.id_profesor) " + 
+    		" INNER JOIN estados d ON (a.id_estado = d.id_estado) " + 
+    		" WHERE c.usuario = ? AND fecha >= NOW() ";
+     
+    //connect();
+     
+    PreparedStatement statement = con.ObtenerConexionPool().prepareStatement(sql);
+    statement.setString(1,usuario);
+    ResultSet resultSet = statement.executeQuery();
+     
+    while (resultSet.next()) {
+    	String l_fecha = resultSet.getString("fecha");
+    	String l_alumno = resultSet.getString("alumno");
+    	//String l_alumno = resultSet.getString("alumno");
+    	String l_estado = resultSet.getString("estado");
+    	int l_id_Alumno = resultSet.getInt("id_alumno");
+    	
+         
+        Tutoria tutoria = new Tutoria(l_fecha, 0,l_id_Alumno, 0, "",l_alumno, l_estado);
+        ListaTutorias.add(tutoria);
+    }
+     
+    resultSet.close();
+    statement.close();
+    con.devolverConexionPool(); 
+    //disconnect();
+     
+    return ListaTutorias;
+ }
 
 
 

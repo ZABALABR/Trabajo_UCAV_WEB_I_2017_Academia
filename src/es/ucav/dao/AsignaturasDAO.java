@@ -188,7 +188,8 @@ public List<Asignatura> Listar_Asignaturas(String Usuario) throws SQLException {
 " FROM asignaturas A INNER JOIN horarios B ON (A.id_horario= B.id_horario) " + 
 " INNER JOIN alumnos_asignaturas C ON (A.id_asignatura= C.id_asignatura) " +
 " INNER JOIN alumnos D ON (C.id_alumno= D.id_alumno) " +
-" WHERE D.usuario = ?";
+" WHERE D.usuario = ?" +
+" ORDER BY B.id_horario";
 	   		//" WHERE a.id_asignatura = ?";
      
     //connect();
@@ -218,6 +219,49 @@ public List<Asignatura> Listar_Asignaturas(String Usuario) throws SQLException {
      
     return ListaAsignaturas;
  }
+
+
+
+public List<Asignatura> Listar_Asignaturas_Profe(String Usuario) throws SQLException {
+    List<Asignatura> ListaAsignaturas = new ArrayList<>();
+     
+    String sql =  "SELECT A.descripcion AS asignatura , B.descripcion AS horario  " +
+    		 " FROM asignaturas A INNER JOIN horarios B ON (A.id_horario= B.id_horario) " + 
+				" INNER JOIN profesores C ON (A.id_profesor = C.id_profesor) " +
+				" WHERE C.usuario = ? " +
+				" ORDER BY horario ";
+	   		//" WHERE a.id_asignatura = ?";
+     
+    //connect();
+     
+    PreparedStatement statement = con.ObtenerConexionPool().prepareStatement(sql);
+    statement.setString(1, Usuario);
+    
+    ResultSet resultSet = statement.executeQuery();
+     
+    while (resultSet.next()) {
+        //int l_id_Asignatura = resultSet.getInt("id_asignatura");
+        String l_descripcion = resultSet.getString("asignatura");
+        String l_horario = resultSet.getString("horario");
+       
+  
+        
+        //float price = resultSet.getFloat("precio");
+         
+        Asignatura asignatura= new Asignatura( l_descripcion, l_horario);
+        ListaAsignaturas.add(asignatura);
+    }
+     
+    resultSet.close();
+    statement.close();
+    con.devolverConexionPool(); 
+    //disconnect();
+     
+    return ListaAsignaturas;
+ }
+
+
+
 public boolean deleteAsignatura(Asignatura asignatura) throws SQLException {
 	
 	
