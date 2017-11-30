@@ -88,11 +88,11 @@
 					<td><c:out value="${tutoria.alumno}" /></td>
 					<td><c:out value="${tutoria.estado}" /></td>
 					<td>&nbsp;&nbsp;&nbsp;&nbsp; <a
-						href="actualizar_estado_tutoria?estado=2;fecha=<c:out value='${tutoria.fecha}' />&amp;id_alumno=<c:out value='${tutoria.id_alumno}' />">Aceptar</a>			
+						href="actualizar_estado_tutoria?estado=2&amp;fecha=<c:out value='${tutoria.fecha}' />&amp;id_alumno=<c:out value='${tutoria.id_alumno}' />&amp;id_profesor=<c:out value='${tutoria.id_profesor}' />">Aceptar</a>			
 					</td>
 					
 					<td>&nbsp;&nbsp;&nbsp;&nbsp; <a
-						href="actualizar_estado_tutoria?estado=3;fecha=<c:out value='${tutoria.fecha}' />&amp;id_alumno=<c:out value='${tutoria.id_alumno}' />">rechazar</a>			
+						href="actualizar_estado_tutoria?estado=3&amp;fecha=<c:out value='${tutoria.fecha}' />&amp;id_alumno=<c:out value='${tutoria.id_alumno}' />&amp;id_profesor=<c:out value='${tutoria.id_profesor}' />">rechazar</a>			
 					</td>
 
 					

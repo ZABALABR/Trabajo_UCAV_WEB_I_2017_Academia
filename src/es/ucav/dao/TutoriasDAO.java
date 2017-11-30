@@ -17,7 +17,7 @@ import java.util.ArrayList;
 //import es_iam.beans.Producto;
 import es.ucav.util.ConexionBBDD;
 
-import es.ucav.beans.Horario;
+
 import es.ucav.beans.Tutoria;
 
 
@@ -104,7 +104,7 @@ public List<Tutoria> Listar_Tutorias(String usuario) throws SQLException {
 public List<Tutoria> Listar_Tutorias_Profe(String usuario) throws SQLException {
     List<Tutoria> ListaTutorias = new ArrayList<>();
      
-    String sql = "SELECT a.fecha AS fecha,CONCAT(b.nombre, ' ' , b.apellido1, ' ',  b.apellido2) AS alumno, b.id_alumno , d.estado FROM tutorias a INNER JOIN alumnos b ON (a.id_alumno=b.id_alumno) " + 
+    String sql = "SELECT a.fecha AS fecha,CONCAT(b.nombre, ' ' , b.apellido1, ' ',  b.apellido2) AS alumno, b.id_alumno ,c.id_profesor, d.estado FROM tutorias a INNER JOIN alumnos b ON (a.id_alumno=b.id_alumno) " + 
     		" INNER JOIN profesores c ON (a.id_profesor = c.id_profesor) " + 
     		" INNER JOIN estados d ON (a.id_estado = d.id_estado) " + 
     		" WHERE c.usuario = ? AND fecha >= NOW() ";
@@ -121,9 +121,10 @@ public List<Tutoria> Listar_Tutorias_Profe(String usuario) throws SQLException {
     	//String l_alumno = resultSet.getString("alumno");
     	String l_estado = resultSet.getString("estado");
     	int l_id_Alumno = resultSet.getInt("id_alumno");
+    	int l_id_profesor = resultSet.getInt("id_profesor");
     	
          
-        Tutoria tutoria = new Tutoria(l_fecha, 0,l_id_Alumno, 0, "",l_alumno, l_estado);
+        Tutoria tutoria = new Tutoria(l_fecha, l_id_profesor,l_id_Alumno, 0, "",l_alumno, l_estado);
         ListaTutorias.add(tutoria);
     }
      
@@ -139,24 +140,28 @@ public List<Tutoria> Listar_Tutorias_Profe(String usuario) throws SQLException {
 
 // falta meter la rutina de actualizar tutoria......
 
-    
-  
-     
-   
-public boolean deleteHorario(Horario horario) throws SQLException {
+public boolean Actualizar_Estado_Tutoria(Tutoria tutoria ) throws SQLException {
 	
 	
-    String sql = "DELETE FROM horarios where id_horario = ?";
+    String sql = "UPDATE tutorias SET id_estado=?  WHERE fecha = ? AND id_profesor=? AND id_alumno=?;";
    
     
     PreparedStatement statement = con.ObtenerConexionPool().prepareStatement(sql);
-    statement.setInt(1, horario.getId_horario());
+    statement.setInt(1, tutoria.getId_estado());
+    statement.setString(2, tutoria.getFecha());
+    statement.setInt(3, tutoria.getId_profesor());
+    statement.setInt(4, tutoria.getId_alumno());
      
-    boolean rowDeleted = statement.executeUpdate() > 0;
+    boolean rowUpdate = statement.executeUpdate() > 0;
     statement.close();
     con.devolverConexionPool(); 
-    return rowDeleted;    
+    return rowUpdate;    
 }  
-}
+}    
+  
+     
+   
+
+
 
  

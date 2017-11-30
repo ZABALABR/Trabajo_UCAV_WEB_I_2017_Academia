@@ -118,7 +118,7 @@
 						&nbsp;&nbsp;&nbsp;&nbsp; <a
 						href="eliminar_asignatura?id_asignatura=<c:out value='${asignatura.id_asignatura}' />">Borrar</a>
 					</td>
-					<td>&nbsp;&nbsp;&nbsp;&nbsp; <a
+					<%-- <td>&nbsp;&nbsp;&nbsp;&nbsp; <a
 						href="horario_asignatura?id_asignatura=<c:out value='${asignatura.id_asignatura}' />">Asignar
 							horario</a>							
 					</td>
@@ -129,7 +129,7 @@
 					<td>&nbsp;&nbsp;&nbsp;&nbsp; <a
 						href="profesor_asignatura?id_asignatura=<c:out value='${asignatura.id_asignatura}' />">Asignar
 							profesor</a>
-					</td>
+					</td> --%>
 					<%--                       <td>
                        &nbsp;&nbsp;&nbsp;&nbsp;
                         <a href="alumnos_asignatura?id_asignatura=<c:out value='${asignatura.id_asignatura}' />">Asignar_alumnos</a>
