@@ -39,6 +39,16 @@
 
 <title>Administrador</title>
 <% 
+String s_error = (String)request.getAttribute("Error"); 
+    if ((s_error != null) && (!s_error.equals("")) ){
+    	%>
+     <script language='javascript'>alert("<%= s_error %>");</script> 
+     
+  	
+<% 
+    }
+%>    
+<%     
 	if(session.getAttribute("usuario")==null) {
         response.sendRedirect("index.html");
     }
@@ -54,10 +64,11 @@
 
           
 	<%--  <h1>Hola Administrador <%=session.getAttribute("usuario") %></h1> --%>
+	 <img src="img/logo4.jpg"  alt="logo"  height="150" width="225"/>
 	<center>
 		<h1>Gestión de asignaturas</h1>
 	</center>
-	<div id="example" class="modal hide fade in" data-backdrop="static" data-keyboard="false"  style="display: none; ">
+<%-- 	<div id="example" class="modal hide fade in" data-backdrop="static" data-keyboard="false"  style="display: none; ">
            <div class="modal-header">
              <a class="close" data-dismiss="modal">x</a>
              <h3>Asignar profesor</h3>
@@ -67,16 +78,16 @@
 				         
 				        <select class="form-control" id="profesores">
 				              <option>elige un profesor</option>
-<%-- 				              <c:forEach var="profe" items="${ListaProfesores}">
+				              <c:forEach var="profe" items="${ListaProfesores}">
 				              <option value ="${profe.id_profesor}" ><c:out value="${profe.nombre}"/></option> 
-				              </c:forEach> --%>
+				              </c:forEach>
 				        </select>	        
            </div>
            <div class="modal-footer">
              <a href="index.html" class="btn btn-success">Guardar</a>
              <a href="#" class="btn" data-dismiss="modal">Cerrar</a>
            </div>
-    </div>
+    </div> --%>
 	<ul id="barra">
 		<!-- <li><a href="listar_profes">Profesores</a></li> -->
 		<li><a href="listar_profes">Profesores</a></li>

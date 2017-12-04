@@ -1,9 +1,11 @@
 package es.ucav.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 //import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 //import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,6 +23,7 @@ import es.ucav.dao.AsignaturasDAO;
 public class Servlet_Eliminar_Asignatura extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private AsignaturasDAO asignaturasDAO;  
+	private String s_error;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -36,7 +39,7 @@ public class Servlet_Eliminar_Asignatura extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		try {
-			
+			s_error="";
 			//System.out.println("vamos a borrar el profesor con id:" + request.getParameter("id_profesor"));
 			int id_asignatura = Integer.parseInt(request.getParameter("id_asignatura").trim());
 			
@@ -51,8 +54,24 @@ public class Servlet_Eliminar_Asignatura extends HttpServlet {
 	        dispatcher.forward(request, response);*/
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
-			sendErrorRedirect(request, response, "/error.jsp", e);
+			s_error ="No se puede borrar la asignatura, verifique que no tiene alumnos asignados";
+			//request.getSession().setAttribute("Error", s_error);
+			//getServletContext().setAttribute("Error", s_error);
+			request.setAttribute("Error", s_error);
+			RequestDispatcher dispatcher;
+			//response.sendRedirect("listar_asignaturas?vengode=''");
+			dispatcher = request.getRequestDispatcher("listar_asignaturas?vengode=''");
+					
+		    dispatcher.forward(request, response);
+			//if (e.getSQLState() == 475){
+	/*			PrintWriter out = response.getWriter();  
+				   out.println("<script type=\"text/javascript\">");
+				   out.println("alert('No puede borrar esta asignatura, revise que no tiene asignado alumnos');");
+				   out.println("location='listado_asignaturas.jsp';");
+				   out.println("</script>");
+				   response.sendRedirect("listar_asignaturas?vengode=''");*/
+			//}
+			//sendErrorRedirect(request, response, "/error.jsp", e);
 			e.printStackTrace();
 			
 		}

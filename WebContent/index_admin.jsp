@@ -36,6 +36,7 @@
 </head>
 <body>
 	<%--  <h1>Hola Administrador <%=session.getAttribute("usuario") %></h1> --%>
+	 <img src="img/logo4.jpg"  alt="logo"  height="150" width="225"/>
 	<center>
 		<h1>Gestión de profesores</h1>
 	</center>

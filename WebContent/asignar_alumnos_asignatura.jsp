@@ -92,6 +92,7 @@ $('#asignaturas').change(function(event) {
           $('<option>').val(value.id_alumno).text(value.nombre_completo).appendTo(select);
       });
         });
+      
         });
 $('#asignaturas').change(function(event) {
     var asignaturas = $("select#asignaturas").val();
