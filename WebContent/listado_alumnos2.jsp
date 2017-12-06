@@ -25,7 +25,7 @@
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/estilo.css" />
+
 
 
 	
@@ -51,11 +51,35 @@
 %>
 
 
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="css/estilo.css" />
+    <script type="text/javascript" src="js/sorttable.js"></script>
 </head>
 <body>
+
+     <div align= "right">
+               
+                 usuario:<% out.println(session.getAttribute("usuario"));%>
+                 <br>
+			     <a href="index.html" class="btn btn-info btn-lg" >
+			         <span class="glyphicon glyphicon-log-out"></span> Log out
+			     </a>
+     </div>
+     
+           <h1>
+        <img src="img/logo4.jpg"  alt="logo"  height="150" width="225"/> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              
+         Administración Academia UCAV
+
+       </h1>
+     
 	<%--  <h1>Hola Administrador <%=session.getAttribute("usuario") %></h1> --%>
 	<center>
-		<h1>Gestión de alumnos</h1>
+		<h2>Gestión de alumnos</h2>
 	</center>
 
 	<ul id="barra">
@@ -88,15 +112,25 @@
 			Statement st =  con.ObtenerConexionPool().prepareStatement(query);
 			ResultSet rs = st.executeQuery(query);
 %>
-	<table align="center" border="1" bordercolor="black" width="80%">
+	<table class="sortable"  border="1"  cellpadding="5">
 	<caption style="font: oblique bold 120% cursive" >Listado de alumnos</caption>
-		<tr align='left' bgcolor='orange'>
-			<th width='25%'>Id_Alumno</th>
-			<th width='5%' align='center'>Nombre</th>
-			<th width='15%'>Apellido1</th>
-			<th width='50%'>Apellido2</th>
-			<th width='50%'>Usuario</th>
+		<!-- <tr align='left' bgcolor='orange'> -->
+		<thead>
+		<tr align='left' > 
+<!-- 			<th width='5%'>Id_Alumno</th>
+			<th width='25%' align='center'>Nombre</th>
+			<th width='25%'>Apellido1</th>
+			<th width='25%'>Apellido2</th>
+			<th width='20%'>Usuario</th> -->
+			
+		    <th>Id_Alumno</th>
+			<th>Nombre</th>
+			<th>Apellido1</th>
+			<th>Apellido2</th>
+			<th>Usuario</th>
+			
 		</tr>
+		</thead>
 		<%
 while (rs.next()) {
 	
@@ -109,12 +143,13 @@ while (rs.next()) {
      
 
 		%>
-		<tr bgcolor='white'>
-			<td><b> <%=l_id_Alumno%></b></td>
-			<td align='center'><b><%=l_nombre%></b></td>
-			<td><b><%=l_apellido1%></b></td>
-			<td><b><%=l_apellido2%></b></td>
-			<td><b><%=l_usuario%></b></td>
+		<!-- <tr bgcolor='white'> -->
+		  <tr >
+			<td> <%=l_id_Alumno%></b></td>
+			<td align='center'><%=l_nombre%></td>
+			<td><%=l_apellido1%></td>
+			<td><%=l_apellido2%></td>
+			<td><%=l_usuario%></td>
 			<td>
 &nbsp;&nbsp;&nbsp;&nbsp; <a
 						href="eliminar_alumno?id_alumno=<%=l_id_Alumno%>&amp;usuario=<%=l_usuario%> "class="btn btn-info btn-xs">Borrar</a>

@@ -54,7 +54,10 @@ String s_error = (String)request.getAttribute("Error");
     <link rel="stylesheet" href="css/estilo.css" />
 </head>
 <body>
+   
+
      <div align= "right">
+               
                  usuario:<% out.println(session.getAttribute("usuario"));%>
                  <br>
 			     <a href="index.html" class="btn btn-info btn-lg" >
@@ -62,15 +65,21 @@ String s_error = (String)request.getAttribute("Error");
 			     </a>
      </div>
      
-     <div >
-	        <img src="img/logo4.jpg"  alt="logo"  height="150" width="225"/>
-	   
-				<center>
-					<h1>Gestión de profesores</h1>
-				</center>
+ 
+    
+       <h1 >
+        <img src="img/logo4.jpg"  alt="logo"  height="150" width="225"/> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              
+         Administración Academia UCAV 
+         
+       </h1>
+	
+	<%--    <center><h1>Gestión de profesores</h1></center> --%>
 		
-     </div>
-     
+	
+   
+   <h2> <center>Gestión de Profesores</center></h2>
      
 	<ul id="barra">
 		<!-- <li><a href="listar_profes">Profesores</a></li> -->
@@ -80,32 +89,15 @@ String s_error = (String)request.getAttribute("Error");
 	<br>
 	<br>
 	<center>
-		<h2>
+	    
+		<h2> 
+		      
 			<a href="add_profesor.jsp">Alta profesor</a> &nbsp;&nbsp;&nbsp;
 			<!-- <a href="listar">Listado de profesores</a> -->
 
 		</h2>
 	</center>
-	<%--    <% 		
-        ConexionBBDD con =new ConexionBBDD();
-        Connection conn	= null;
-        conn = con.ObtenerConexionPool();
-		if (con.ObtenerConexionPool() != null ) {
-			System.out.println("Conexion realizada.");
-			
-		   	Statement stm = con.ObtenerConexionPool().createStatement();
-			ResultSet rs = stm.executeQuery("SELECT b.`inicio` FROM usuarios a INNER JOIN roles  b ON (a.id_rol = b.id_rol) where usuario='admin' and contraseña='admin'");
-			if(rs.next()) {
-				System.out.println("estamos en el jsp RAMON" + rs.getString(1));
-			}
-			 
-			rs.close();
-			stm.close();
-			con.devolverConexionPool();
-			//conn.close();	
-		}
-		%>
-		 --%>
+	
 
 
 	<div align="center">

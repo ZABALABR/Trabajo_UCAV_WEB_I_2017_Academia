@@ -31,10 +31,10 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
  -->
- <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<!--  <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <link rel="stylesheet" href="css/bootstrap.css">
 
-<link rel="stylesheet" href="css/estilo.css" />
+<link rel="stylesheet" href="css/estilo.css" /> -->
 
 
 <title>Administrador</title>
@@ -56,19 +56,54 @@ String s_error = (String)request.getAttribute("Error");
 
 %>
 
-<link rel="stylesheet" href="css/bootstrap.css">
+<!-- <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/estilo.css" />
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="css/estilo.css" />
+    
+    <script type="text/javascript" src="js/sorttable.js"></script> -->
+    
+    
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="css/estilo.css" />
+    <script type="text/javascript" src="js/sorttable.js"></script>
+    
+        
 </head>
 <body>
-<div class="container">
+
+     <div align= "right">
+               
+                 usuario:<% out.println(session.getAttribute("usuario"));%>
+                 <br>
+			     <a href="index.html" class="btn btn-info btn-lg" >
+			         <span class="glyphicon glyphicon-log-out"></span> Log out
+			     </a>
+     </div>
+     
+ 
+    
+       <h1 >
+        <img src="img/logo4.jpg"  alt="logo"  height="150" width="225"/> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              
+         Administración Academia UCAV 
+         
+       </h1>
+	<center>
+		<h2>Gestión de asignaturas</h2>
+	</center>
+
 
 
           
-	<%--  <h1>Hola Administrador <%=session.getAttribute("usuario") %></h1> --%>
-	 <img src="img/logo4.jpg"  alt="logo"  height="150" width="225"/>
-	<center>
-		<h1>Gestión de asignaturas</h1>
-	</center>
+	
 <%-- 	<div id="example" class="modal hide fade in" data-backdrop="static" data-keyboard="false"  style="display: none; ">
            <div class="modal-header">
              <a class="close" data-dismiss="modal">x</a>
@@ -96,7 +131,8 @@ String s_error = (String)request.getAttribute("Error");
 	</ul>
 	<br>
 	<br>
-	<center>
+	
+   <center>
 		<h2>
 			<a href="horarios_y_profes">Alta asignatura</a> &nbsp;&nbsp;&nbsp; 
 			<a href="listar_asignaturas?vengode=asignar">Asignar alumnos</a> &nbsp;&nbsp;&nbsp;
@@ -110,7 +146,7 @@ String s_error = (String)request.getAttribute("Error");
 
 	<div align="center">
 	    
-		<table border="1" cellpadding="5">
+		<table class="sortable"  border="1"  cellpadding="5">
 			<caption style="font: oblique bold 120% cursive" >Listado de asignaturas</caption>
 			<tr>
 				<th>ID</th>
@@ -163,9 +199,9 @@ String s_error = (String)request.getAttribute("Error");
 	
 
 
- </div>
+
 
 <script src="js/jquery.js" type="text/javascript"></script>
-<script src="js/bootstrap-modal.js" type="text/javascript"></script>
+<!-- <script src="js/bootstrap-modal.js" type="text/javascript"></script> -->
 </body>
 </html>
