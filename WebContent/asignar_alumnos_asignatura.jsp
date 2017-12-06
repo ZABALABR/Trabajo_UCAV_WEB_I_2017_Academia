@@ -114,6 +114,23 @@ $('#asignaturas').change(function(event) {
 </script>
 </head>
 <body>
+<center>
+		<h1>Gestión de asignaturas</h1>
+	</center>
+	<ul id="barra">
+		<!-- <li><a href="listar">Profesores</a></li> -->
+		<li><a href="listar_alumnos">Alumnos</a></li>
+		<li><a href="listar_profes">Profesores</a></li>
+	</ul>
+	<br>
+	<br>
+	<center>
+		<h2>
+			<!--          <a href="alta_profesor">Alta profesor</a>
+            &nbsp;&nbsp;&nbsp; -->
+			<a href="listar_asignaturas?vengode=''">Listado de asignaturas</a>
+		</h2>
+	</center>
 
 <div class ="container">
        <br>

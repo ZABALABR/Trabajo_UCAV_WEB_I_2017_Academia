@@ -4,6 +4,7 @@ package es.ucav.dao;
 //import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -304,15 +305,91 @@ public List<Profesor> Listar_Profesores_Sin_Asignatura() throws SQLException {
  }
  
 public boolean deleteProfesor(Profesor profesor) throws SQLException {
-    String sql = "DELETE FROM profesores where id_profesor = ?";
+	Connection conexion = null;
+	String sql = "";
+	PreparedStatement statement1 = null;
+    PreparedStatement statement2 = null;
+    PreparedStatement statement4 = null;
+    boolean rowDeleted = false;
+ 
+    try {
+        conexion=con.ObtenerConexionPool();   
+        conexion.setAutoCommit(false); 
+	        
+	        
+	        
+     sql = "UPDATE asignaturas set id_profesor=NULL WHERE  id_profesor = ?";
+    
+     statement1 = conexion.prepareStatement(sql);
+     statement1.setInt(1, profesor.getId_profesor()); 
+     rowDeleted = statement1.executeUpdate() > 0;
+
+     
+     sql = "DELETE FROM tutorias  where id_profesor = ?";
+     
+     statement4 = conexion.prepareStatement(sql);
+     statement4.setInt(1, profesor.getId_profesor());   
+     rowDeleted = statement4.executeUpdate() > 0;
+     
+     
+     
+	
+     sql = "DELETE FROM profesores where id_profesor = ?";
   
+     
+     statement2 = conexion.prepareStatement(sql);
+     statement2.setInt(1, profesor.getId_profesor()); 
+     rowDeleted = statement2.executeUpdate() > 0;
+     
+     /*
     PreparedStatement statement = con.ObtenerConexionPool().prepareStatement(sql);
     statement.setInt(1, profesor.getId_profesor());
      
-    boolean rowDeleted = statement.executeUpdate() > 0;
+    boolean rowDeleted = statement.executeUpdate() > 0;*/
+    
+ /*   
+    
     statement.close();
     con.devolverConexionPool(); 
-    return rowDeleted;    
+    return rowDeleted;   */ 
+     
+     
+     if  (rowDeleted) {
+   	  conexion.commit();
+       }else { 
+       	 conexion.rollback();
+       }
+       
+       
+   	return rowDeleted;  
+       
+       
+       
+      
+       	
+       } catch (SQLException e) {
+
+   		System.out.println(e.getMessage());
+   		 conexion.rollback();
+   		 rowDeleted = false;
+   		 return rowDeleted;  
+
+   	} finally {
+   		
+   		if (statement1 != null) {
+   			statement1.close();
+   		}
+
+   		if (statement2 != null) {
+   			statement2.close();
+   		
+   		}
+   		if (conexion != null) {
+   			  con.devolverConexionPool(); 
+   		}
+
+   	}
+   }  
 }
-}
+
  

@@ -29,18 +29,49 @@
 <script type="text/javascript" src="js/sorttable.js"></script>
 <title>Administrador</title>
 <% 
+String s_error = (String)request.getAttribute("Error"); 
+    if ((s_error != null) && (!s_error.equals("")) ){
+    	%>
+     <script language='javascript'>alert("<%= s_error %>");</script> 
+     
+  	
+<% 
+    }
+%>    
+<%@page session="true" %>
+<% 
 	if(session.getAttribute("usuario")==null) {
         response.sendRedirect("index.html");
     }
 %>
+<!-- <link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/estilo.css" /> -->
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="css/estilo.css" />
 </head>
 <body>
-	<%--  <h1>Hola Administrador <%=session.getAttribute("usuario") %></h1> --%>
-	 <img src="img/logo4.jpg"  alt="logo"  height="150" width="225"/>
-	<center>
-		<h1>Gestión de profesores</h1>
-	</center>
-
+     <div align= "right">
+                 usuario:<% out.println(session.getAttribute("usuario"));%>
+                 <br>
+			     <a href="index.html" class="btn btn-info btn-lg" >
+			         <span class="glyphicon glyphicon-log-out"></span> Log out
+			     </a>
+     </div>
+     
+     <div >
+	        <img src="img/logo4.jpg"  alt="logo"  height="150" width="225"/>
+	   
+				<center>
+					<h1>Gestión de profesores</h1>
+				</center>
+		
+     </div>
+     
+     
 	<ul id="barra">
 		<!-- <li><a href="listar_profes">Profesores</a></li> -->
 		<li><a href="listar_alumnos">Alumnos</a></li>
@@ -101,12 +132,12 @@
 					<td>
 						<%--  <a href="/edit?id=<c:out value='${profe.id_profesor}' />">Edit</a> --%>
 						&nbsp;&nbsp;&nbsp;&nbsp; <a
-						href="eliminar_profe?id_profesor=<c:out value='${profe.id_profesor}' />">Borrar</a>
+						href="eliminar_profe?id_profesor=<c:out value='${profe.id_profesor}' />"class="btn btn-info btn-xs">Borrar</a>
 					</td>
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
-
+<script src="js/jquery.js" type="text/javascript"></script>
 </body>
 </html>

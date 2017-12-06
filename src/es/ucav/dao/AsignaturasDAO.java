@@ -89,18 +89,19 @@ public boolean Asignar_Alumnos(Asignatura asignatura, String[] lista_alumnos ) t
 		    rowInserted = statement1.executeUpdate() > 0;
 		    
     //2.- recorrremos la lista de alumnos y los insertamos en la tabla alumnos_asignaturas
-    
-    for (String individualValue: lista_alumnos ) {           
-        //play with individual dropdown item here, for example
-        sql = "insert into DBAcademia.alumnos_asignaturas values ( ?,?) ";
-        
-        
-        statement2 = conexion.prepareStatement(sql);
-        statement2.setInt(1, asignatura.getId_asignatura());
-        statement2.setInt(2, Integer.parseInt(individualValue));
-        rowInserted = statement2.executeUpdate() > 0;
-    	
-        System.out.println(individualValue);
+    if (!lista_alumnos[0].equals("")) {
+		    for (String individualValue: lista_alumnos ) {           
+		        //play with individual dropdown item here, for example
+		        sql = "insert into DBAcademia.alumnos_asignaturas values ( ?,?) ";
+		        
+		        
+		        statement2 = conexion.prepareStatement(sql);
+		        statement2.setInt(1, asignatura.getId_asignatura());
+		        statement2.setInt(2, Integer.parseInt(individualValue));
+		        rowInserted = statement2.executeUpdate() > 0;
+		    	
+		        System.out.println(individualValue);
+		    }
     }
  //  statement.setInt(1, asignatura.getId_horario());
      
@@ -276,7 +277,28 @@ public boolean deleteAsignatura(Asignatura asignatura) throws SQLException {
     con.devolverConexionPool(); 
     return rowDeleted;    
 
-}   
+}  
+
+
+public boolean Asignar_profe_Asignatura(int id_profesor, int id_asignatura) throws SQLException {
+	
+	
+    String sql = "UPDATE asignaturas SET id_profesor = ? where id_asignatura = ?";
+   
+    
+    PreparedStatement statement = con.ObtenerConexionPool().prepareStatement(sql);
+    statement.setInt(1, id_profesor);
+    statement.setInt(2, id_asignatura);
+     
+    boolean rowUpdate = statement.executeUpdate() > 0;
+    statement.close();
+    con.devolverConexionPool(); 
+    return rowUpdate;    
+
+}  
+
+
+
 }
 
  

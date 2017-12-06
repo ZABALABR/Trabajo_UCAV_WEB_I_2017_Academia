@@ -41,7 +41,7 @@
 
 	<div align="center">
 
-		<form action="alta_tutoria"  onsubmit="return validacion()" method="post">
+		<form name="formulario" action="alta_tutoria"  onsubmit="return validacion()" method="post">
 
 			<table border="1" cellpadding="5">
 				<caption>
@@ -52,9 +52,9 @@
 					<th>Elige una fecha:</th>
 					<td>
 						    <input type="hidden" id="fecha" name="fecha" required onchange="diaSemana();"/>
-							<input type="text" id="fecha2" name="fecha2" "/>
-							<input type="text" name="day_of_week" id="day_of_week"/>
-							<button id="trigger">Ver...</button>
+							<input type="text" id="fecha2" name="fecha2"  disabled/>
+							<input type="text" name="day_of_week" id="day_of_week" disabled/>
+							<button  name="ver" id="trigger">Fecha...</button>
 		
 		
 					</td>
@@ -74,8 +74,8 @@
 				       </td>
 			   </tr>			
 				<tr>
-					<td colspan="2" align="center"><input type="submit"
-						value="Solicitar" /></td>
+					<td colspan="2" align="center"><input type="button"
+						value="Solicitar" onclick="valida()"/></td>
 				</tr>
 			</table>
 		</form>
@@ -147,6 +147,41 @@
 		        return true;
 		      else
 		        return false;
+		}
+		
+		
+		
+		function valida(){
+			if(document.formulario.fecha.value.length==0){
+				alert("Elige una fecha, utiliza el boton <Fecha>.");
+				document.formulario.ver.focus();
+				return;
+				}
+			
+			
+			var x = document.getElementById("fecha");
+			let date = new Date(x.value);
+			 var dateString = x.value; 
+			if (validarFechaMenorActual(dateString)) {
+			    // Si no se cumple la condicion...
+			    alert('Debes seleccionar una fecha mayor que hoy.');
+			    //document.getElementById("fecha2").focus();
+			    document.formulario.ver.focus();
+			    return ;
+			  }
+			
+			if(document.formulario.day_of_week.value == "Sábado" || document.formulario.day_of_week.value == "Domingo"){
+				alert("No hay tutorias en fin de semana, Elige otra fecha, utiliza el boton <Fecha>.");
+				document.formulario.ver.focus();
+				return;
+				}			
+		
+		    if(document.formulario.profesores.selectedIndex==0) {
+					alert("Selecciona un profesor.");
+					document.formulario.profesores.focus();
+					return;
+		             }
+		    document.formulario.submit();
 		}
 		
 	</script>

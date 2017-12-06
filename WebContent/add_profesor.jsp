@@ -13,6 +13,31 @@
         response.sendRedirect("index.html");
     }
 %>
+
+<script>
+function valida(){
+	
+	if(document.formulario.nombre.value.length==0){
+			alert("Introduce el nombre del profesor.");
+			document.formulario.nombre.focus();
+			return;
+			}
+	if(document.formulario.apellido1.value.length==0){
+		alert("Introduce el primer apellido del profesor.");
+		document.formulario.apellido1.focus();
+		return;
+		}
+	if(document.formulario.apellido2.value.length==0){
+		alert("Introduce el segundo apellido del profesor.");
+		document.formulario.apellido2.focus();
+		return;
+		}
+
+    document.formulario.submit();
+}
+</script>
+
+
 </head>
 <body>
 	
@@ -36,7 +61,7 @@
 
 	<div align="center">
 
-		<form action="alta_profesor" method="post">
+		<form name="formulario" action="alta_profesor" method="post">
 
 			<table border="1" cellpadding="5">
 				<caption>Alta profesor</caption>
@@ -57,8 +82,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center"><input type="submit"
-						value="Grabar" /></td>
+					<td colspan="2" align="center"><input type="button"
+						value="Grabar" onclick="valida()"/></td>
 				</tr>
 			</table>
 		</form>

@@ -359,10 +359,12 @@ else{
 public boolean deleteAlumno(Alumno alumno) throws SQLException {
 	
 	
-    String sql = "DELETE FROM alumnos where id_alumno = ?";
+    String sql = "";
     Connection conexion = null;
     PreparedStatement statement1 = null;
     PreparedStatement statement2 = null;
+    PreparedStatement statement3 = null;
+    PreparedStatement statement4 = null;
     boolean rowDeleted = false;
     
     
@@ -370,6 +372,23 @@ public boolean deleteAlumno(Alumno alumno) throws SQLException {
     conexion=con.ObtenerConexionPool();   
     conexion.setAutoCommit(false); 
      
+    
+      
+    
+    sql = "DELETE FROM alumnos_asignaturas  where id_alumno = ?";
+   
+    statement3 = conexion.prepareStatement(sql);
+    statement3.setInt(1, alumno.getId_alumno());   
+    rowDeleted = statement3.executeUpdate() > 0;
+    
+    sql = "DELETE FROM tutorias  where id_alumno = ?";
+    
+    statement4 = conexion.prepareStatement(sql);
+    statement4.setInt(1, alumno.getId_alumno());   
+    rowDeleted = statement4.executeUpdate() > 0;
+    
+    
+    sql = "DELETE FROM alumnos where id_alumno = ?";
     statement1 = conexion.prepareStatement(sql);
     statement1.setInt(1, alumno.getId_alumno());   
     rowDeleted = statement1.executeUpdate() > 0;
@@ -377,8 +396,7 @@ public boolean deleteAlumno(Alumno alumno) throws SQLException {
     sql = "DELETE FROM usuarios where usuario = ?";
     statement2 = conexion.prepareStatement(sql);
     statement2.setString(1, alumno.getUsuario());   
-    rowDeleted = statement2.executeUpdate() > 0;    
-    
+    rowDeleted = statement2.executeUpdate() > 0; 
     
     if  (rowDeleted) {
 	  conexion.commit();
@@ -409,7 +427,12 @@ public boolean deleteAlumno(Alumno alumno) throws SQLException {
 		if (statement2 != null) {
 			statement2.close();
 		}
-
+		if (statement3 != null) {
+			statement3.close();
+		}
+		if (statement4 != null) {
+			statement4.close();
+		}
 		if (conexion != null) {
 			  con.devolverConexionPool(); 
 		}

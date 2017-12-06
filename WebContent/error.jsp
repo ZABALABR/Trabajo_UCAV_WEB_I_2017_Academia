@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Academia UCAV</title>
 </head>
 <body>
 
-
+<h1>Se ha produccido el siguiente error:</h1>
 
 <%@ page isErrorPage = "true"%>
 <% if (exception != null) {

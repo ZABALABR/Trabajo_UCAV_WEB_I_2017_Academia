@@ -47,7 +47,6 @@
 
 %>
 
-
 </head>
 <body>
 <div class="container">
@@ -72,7 +71,7 @@
 
 	<div align="center">
 	    
-		<table border="1" cellpadding="5">
+		<table  border="1" cellpadding="5">
 			<caption style="font: oblique bold 120% cursive" >Listado de tutorias</caption>
 			<tr>
 				<th>Fecha de tutoria</th>
@@ -88,11 +87,11 @@
 					<td><c:out value="${tutoria.alumno}" /></td>
 					<td><c:out value="${tutoria.estado}" /></td>
 					<td>&nbsp;&nbsp;&nbsp;&nbsp; <a
-						href="actualizar_estado_tutoria?estado=2&amp;fecha=<c:out value='${tutoria.fecha}' />&amp;id_alumno=<c:out value='${tutoria.id_alumno}' />&amp;id_profesor=<c:out value='${tutoria.id_profesor}' />">Aceptar</a>			
+						href="actualizar_estado_tutoria?estado=2&amp;fecha=<c:out value='${tutoria.fecha}' />&amp;id_alumno=<c:out value='${tutoria.id_alumno}' />&amp;id_profesor=<c:out value='${tutoria.id_profesor}' />" class="btn btn-info btn-xs">Aceptar</a>			
 					</td>
 					
 					<td>&nbsp;&nbsp;&nbsp;&nbsp; <a
-						href="actualizar_estado_tutoria?estado=3&amp;fecha=<c:out value='${tutoria.fecha}' />&amp;id_alumno=<c:out value='${tutoria.id_alumno}' />&amp;id_profesor=<c:out value='${tutoria.id_profesor}' />">rechazar</a>			
+						href="actualizar_estado_tutoria?estado=3&amp;fecha=<c:out value='${tutoria.fecha}' />&amp;id_alumno=<c:out value='${tutoria.id_alumno}' />&amp;id_profesor=<c:out value='${tutoria.id_profesor}' />" class="btn btn-info btn-xs">rechazar</a>			
 					</td>
 
 					

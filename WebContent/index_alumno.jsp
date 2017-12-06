@@ -28,6 +28,8 @@
 
 
 <title>Administrador</title>
+<%@page session="true" %>
+
 <% 
     application.setAttribute("usuario", session.getAttribute("usuario"));
     application.setAttribute("id_alumno", session.getAttribute("id_alumno"));

@@ -41,7 +41,7 @@ public class Servlet_Eliminar_Alumno extends HttpServlet {
 			int id_alumno = Integer.parseInt(request.getParameter("id_alumno").trim());
 			 String usuario = request.getParameter("usuario").trim();
 			//String usuario="";
-			 System.out.println ("aki llege");
+			
 	        
 	        alumnosDAO = new AlumnosDAO();	
 	        Alumno alumno =new Alumno(id_alumno,"","","",usuario);

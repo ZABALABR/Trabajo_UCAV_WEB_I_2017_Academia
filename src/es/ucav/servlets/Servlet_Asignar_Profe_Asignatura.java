@@ -2,31 +2,28 @@ package es.ucav.servlets;
 
 import java.io.IOException;
 import java.sql.SQLException;
-//import java.util.List;
 
-import javax.servlet.RequestDispatcher;
-//import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import es.ucav.beans.Profesor;
-import es.ucav.dao.ProfesoresDAO;
+import es.ucav.beans.Asignatura;
+import es.ucav.dao.AsignaturasDAO;
 
 /**
- * Servlet implementation class Servlet_Eliminar
+ * Servlet implementation class Servlet_Insertar
  */
-@WebServlet("/eliminar_profe")
-public class Servlet_Eliminar_Profesor extends HttpServlet {
+@WebServlet("/asignar_profe_asignatura")
+public class Servlet_Asignar_Profe_Asignatura extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ProfesoresDAO profesoresDAO;  
-	private String s_error;
+	private AsignaturasDAO asignaturasDAO;  
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Servlet_Eliminar_Profesor() {
+    public Servlet_Asignar_Profe_Asignatura() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,32 +33,31 @@ public class Servlet_Eliminar_Profesor extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		try {
-			s_error="";
+			
 			//System.out.println("vamos a borrar el profesor con id:" + request.getParameter("id_profesor"));
-			int id_profe = Integer.parseInt(request.getParameter("id_profesor").trim());
+			 int id_profesor = Integer.parseInt(request.getParameter("profesores").trim());
+			 int id_asignatura = Integer.parseInt(request.getParameter("asignaturas").trim());
+			 
+			
+
+			
 			 
 	        
 	        
-	        profesoresDAO = new ProfesoresDAO();	
-	        Profesor profe =new Profesor(id_profe);
-			profesoresDAO.deleteProfesor(profe);
-			 response.sendRedirect("listar_profes");
-			 
+			asignaturasDAO = new AsignaturasDAO();	
+	        //Asignatura asignatura =new Asignatura(0,descripcion,"","");
+			//Asignatura asignatura =new Asignatura(descripcion,id_horario,id_profesor);
+			asignaturasDAO.Asignar_profe_Asignatura(id_profesor,id_asignatura);
+			 response.sendRedirect("listar_asignaturas?vengode=''");
+	
 			/* 
 		    RequestDispatcher dispatcher = request.getRequestDispatcher("index_admin.jsp");
 	        dispatcher.forward(request, response);*/
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			s_error ="No se puede borrar el profesor, al estar enlazado a una asignatura, debera eliminar la asignatura, y despues borrar el profesor.";
-			//request.getSession().setAttribute("Error", s_error);
-			//getServletContext().setAttribute("Error", s_error);
-			request.setAttribute("Error", s_error);
-			RequestDispatcher dispatcher;
-			dispatcher = request.getRequestDispatcher("listar_profes");
-			dispatcher.forward(request, response);
 			e.printStackTrace();
+			 
 		}
 	}
 

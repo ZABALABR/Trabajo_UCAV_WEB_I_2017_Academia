@@ -27,7 +27,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="css/estilo.css" />
 
-	
+
 	
 
 
@@ -117,7 +117,7 @@ while (rs.next()) {
 			<td><b><%=l_usuario%></b></td>
 			<td>
 &nbsp;&nbsp;&nbsp;&nbsp; <a
-						href="eliminar_alumno?id_alumno=<%=l_id_Alumno%>&amp;usuario=<%=l_usuario%> ">Borrar</a>
+						href="eliminar_alumno?id_alumno=<%=l_id_Alumno%>&amp;usuario=<%=l_usuario%> "class="btn btn-info btn-xs">Borrar</a>
 		    </td>							
 		</tr>
 		<%

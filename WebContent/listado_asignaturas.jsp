@@ -56,7 +56,8 @@ String s_error = (String)request.getAttribute("Error");
 
 %>
 
-
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/estilo.css" />
 </head>
 <body>
 <div class="container">
@@ -97,8 +98,9 @@ String s_error = (String)request.getAttribute("Error");
 	<br>
 	<center>
 		<h2>
-			<a href="horarios_y_profes">Alta asignatura</a> &nbsp;&nbsp;&nbsp; <a
-				href="listar_asignaturas?vengode=asignar">Asignar alumnos</a> &nbsp;&nbsp;&nbsp;
+			<a href="horarios_y_profes">Alta asignatura</a> &nbsp;&nbsp;&nbsp; 
+			<a href="listar_asignaturas?vengode=asignar">Asignar alumnos</a> &nbsp;&nbsp;&nbsp;
+			<a href="asignaturas_y_profes">Asignar profesor</a> &nbsp;&nbsp;&nbsp;
 			<!-- <a href="listar">Listado de profesores</a> -->
 
 		</h2>
@@ -124,11 +126,17 @@ String s_error = (String)request.getAttribute("Error");
 					<td><c:out value="${asignatura.horario}" /></td>
 					<td><c:out value="${asignatura.profesor}" /></td>
 
-					<td>
-						<%--  <a href="/edit?id=<c:out value='${profe.id_profesor}' />">Edit</a> --%>
+				<%-- 	<td>
+						 <a href="/edit?id=<c:out value='${profe.id_profesor}' />">Edit</a>
 						&nbsp;&nbsp;&nbsp;&nbsp; <a
 						href="eliminar_asignatura?id_asignatura=<c:out value='${asignatura.id_asignatura}' />">Borrar</a>
+					</td> --%>
+					
+					<td> <a 
+			         href="eliminar_asignatura?id_asignatura=<c:out value='${asignatura.id_asignatura}' />" class="btn btn-info btn-xs" id="profesor">Borrar</a> 	
 					</td>
+					
+					
 					<%-- <td>&nbsp;&nbsp;&nbsp;&nbsp; <a
 						href="horario_asignatura?id_asignatura=<c:out value='${asignatura.id_asignatura}' />">Asignar
 							horario</a>							

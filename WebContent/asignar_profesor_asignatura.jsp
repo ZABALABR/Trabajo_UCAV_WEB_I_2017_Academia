@@ -18,15 +18,11 @@
 <script>
 function valida(){
 	
-	if(document.formulario.descripcion.value.length==0){
-			alert("Introduce la descripción de la asigntura.");
-			document.formulario.descripcion.focus();
-			return;
-			}
+	
 			
 			
-	if(document.formulario.horarios.selectedIndex==0) {
-			alert("Selecciona un horario.");
+	if(document.formulario.asignaturas.selectedIndex==0) {
+			alert("Selecciona una asignatura.");
 			document.formulario.horarios.focus();
 			return;
 			}
@@ -63,29 +59,25 @@ function valida(){
 
 	<div align="center">
 
-		<form name="formulario" action="alta_asignatura" method="post">
+		<form name="formulario" action="asignar_profe_asignatura" method="post">
 
 			<table border="1" cellpadding="5">
 				<caption>
-					<h2>Alta asignatura</h2>
+					<h2>Asignar profesor a una asignatura</h2>
 				</caption>
 
+		
 				<tr>
-					<th>Descripcion:</th>
-					<td><input type="text" name="descripcion" size="45" value=""    maxlength="50" />
-					</td>
-				</tr>
-				<tr>
-	                   <th>Seleccionar horario:</th>
+	                   <th>Seleccionar Asignatura:</th>
 	                   <td>
-		                   <!--  <label for="horarios" >Seleccionar horario</label> -->
-					         
-					        <select class="form-control" id="horarios" name="horarios" >
-					              <option>Selecciona horario</option>
-					              <c:forEach var="horario" items="${ListaHorarios}">
-					              <option value ="${horario.id_horario}" ><c:out value="${horario.descripcion}"/></option> 
-					              </c:forEach>
-					        </select>
+		                   
+					        
+					        <select class="form-control" id="asignaturas" name="asignaturas">
+				              <option>Selecciona la asignatura</option>
+				              <c:forEach var="asignatura" items="${ListaAsignaturas}">
+				              <option value ="${asignatura.id_asignatura}" ><c:out value="${asignatura.descripcion}"/></option> 
+				              </c:forEach>
+				            </select>
 			            </td>
 			   </tr>
 			   <tr>
