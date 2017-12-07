@@ -37,7 +37,7 @@
         response.sendRedirect("index.html");
     }
 %>
-
+<script type="text/javascript" src="js/sorttable.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -83,7 +83,7 @@
 
 
 	<div class="table-responsive" align="center">
-		<table border="1" cellpadding="5">
+		<table class="sortable" border="1" cellpadding="5">
 			<caption style="font: oblique bold 120% cursive">horario</caption>
 			<tr>
 				<th>Asignatura</th>

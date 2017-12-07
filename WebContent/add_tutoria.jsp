@@ -11,7 +11,7 @@
 <script type="text/javascript" src="js/calendar-es.js"></script>
 <script type="text/javascript" src="js/calendar-setup.js"></script>
 
-<link rel="stylesheet" href="css/bootstrap.css">
+<!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
 <link rel="stylesheet" href="css/estilo.css" />
 <title>Gestión de asignaturas</title>
 <% 
@@ -21,31 +21,61 @@
         response.sendRedirect("index.html");
     }
 %>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="js/sorttable.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="css/estilo.css" />
 </head>
 <body>
-	<center>
+
+<div class="container-fluid">  
+<div class="row">
+  <div class="col-md-4">
+  <img src="img/logo4.jpg"  alt="logo"  height="150" width="225"/> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </div>
+  <div class="col-md-4">
+       <h1 ><center>Administración Alumno</center></h1>
+       <h2> <center>Gestión de tutorias</center></h2>
+  </div>
+  <div class="col-md-4" align= "right">
+                 usuario:<% out.println(session.getAttribute("usuario"));%>
+                 <br>
+			     <a href="index.html" class="btn btn-info btn-lg" >
+			         <span class="glyphicon glyphicon-log-out"></span> Log out
+			     </a>
+  </div>
+</div>
+<%-- 	<center>
 		<h1>Gestión de tutorias</h1>
-	</center>
+	</center> --%>
+	
+<div class="row"> 	
 	<ul id="barra">
           <li><a href="horarios_alumno">Mi horario</a></li>
 	</ul>
-	<br>
-	<br>
-	<center>
-		<h2>
+</div>	
+
+<div class="row"> 		
+	
+		<h2 align="center">
 		
 			<a href="alu_tutorias_solicitadas">Listado de tutorias</a>
 
 		</h2>
-	</center>
-
-	<div align="center">
+	
+</div>	
+<div class="row"> 
+	
 
 		<form name="formulario" action="alta_tutoria"  onsubmit="return validacion()" method="post">
-
+			<div class="table-responsive" align="center">
 			<table border="1" cellpadding="5">
 				<caption>
-					<h2>Solicitar tutoria</h2>
+					Solicitar tutoria
 				</caption>
 
 				<tr>
@@ -78,10 +108,12 @@
 						value="Solicitar" onclick="valida()"/></td>
 				</tr>
 			</table>
+			</div>
 		</form>
-	</div>
+	
+</div>	
 <script src="js/jquery.js" type="text/javascript"></script>
-<script src="js/bootstrap-modal.js" type="text/javascript"></script>
+<!-- <script src="js/bootstrap-modal.js" type="text/javascript"></script> -->
 
 	<script type="text/javascript">
 		Calendar.setup({
@@ -185,7 +217,7 @@
 		}
 		
 	</script>
-		
+</div>		
 </body>
 </html>
 
