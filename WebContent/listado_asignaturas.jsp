@@ -65,20 +65,38 @@ String s_error = (String)request.getAttribute("Error");
     <link rel="stylesheet" href="css/estilo.css" />
     
     <script type="text/javascript" src="js/sorttable.js"></script> -->
-    
-    
+
+  <script type="text/javascript" src="js/sorttable.js"></script> 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
     <link rel="stylesheet" href="css/estilo.css" />
-    <script type="text/javascript" src="js/sorttable.js"></script>
+   
     
         
 </head>
 <body>
 
-     <div align= "right">
+ <div class="container-fluid">  
+<div class="row">
+  <div class="col-md-4">
+  <img src="img/logo4.jpg"  alt="logo"  height="150" width="225"/> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </div>
+  <div class="col-md-4">
+       <h1 ><center>Administración Academia</center></h1>
+       <h2> <center>Gestión de Asignaturas</center></h2>
+  </div>
+  <div class="col-md-4" align= "right">
+                 usuario:<% out.println(session.getAttribute("usuario"));%>
+                 <br>
+			     <a href="index.html" class="btn btn-info btn-lg" >
+			         <span class="glyphicon glyphicon-log-out"></span> Log out
+			     </a>
+  </div>
+</div>
+<%--      <div align= "right">
                
                  usuario:<% out.println(session.getAttribute("usuario"));%>
                  <br>
@@ -98,7 +116,8 @@ String s_error = (String)request.getAttribute("Error");
        </h1>
 	<center>
 		<h2>Gestión de asignaturas</h2>
-	</center>
+	</center> 
+--%>
 
 
 
@@ -124,39 +143,55 @@ String s_error = (String)request.getAttribute("Error");
              <a href="#" class="btn" data-dismiss="modal">Cerrar</a>
            </div>
     </div> --%>
+ <div class="row">      
 	<ul id="barra">
 		<!-- <li><a href="listar_profes">Profesores</a></li> -->
 		<li><a href="listar_profes">Profesores</a></li>
 		<li><a href="listar_alumnos">Alumnos</a></li>
 	</ul>
-	<br>
-	<br>
-	
-   <center>
+</div>
+
+
+ <div class="row"> 	
+   <div class="col-md-4">
+     <h2><center><a href="horarios_y_profes">Alta asignatura</a></center> </h2>
+   </div>  
+   <div class="col-md-4">
+     <h2><center><a href="listar_asignaturas?vengode=asignar">Asignar alumnos</a></center> </h2>
+   </div>  
+   <div class="col-md-4">  
+     <h2><center><a href="asignaturas_y_profes">Asignar profesor</a></center> </h2>
+   </div>  
+ 
+<%--    <center>
 		<h2>
 			<a href="horarios_y_profes">Alta asignatura</a> &nbsp;&nbsp;&nbsp; 
 			<a href="listar_asignaturas?vengode=asignar">Asignar alumnos</a> &nbsp;&nbsp;&nbsp;
 			<a href="asignaturas_y_profes">Asignar profesor</a> &nbsp;&nbsp;&nbsp;
-			<!-- <a href="listar">Listado de profesores</a> -->
+			<a href="listar">Listado de profesores</a>
 
 		</h2>
-	</center>
+	</center> --%>
+</div>
 
-
-
-	<div align="center">
+<div class="row"> 
+	<div class="table-responsive" align="center">
 	    
-		<table class="sortable"  border="1"  cellpadding="5">
+		<table class="sortable" border="1" cellpadding="5">
 			<caption style="font: oblique bold 120% cursive" >Listado de asignaturas</caption>
+			<thead>
 			<tr>
-				<th>ID</th>
+			   
+				<th>id_Asignatura</th>
 				<th>Asignatura</th>
 				<th>Horario</th>
 				<th>Profesor asignado</th>
 
 			</tr>
+			</thead>
 			<c:forEach var="asignatura" items="${ListaAsignaturas}">
 				<tr>
+				    
 					<td><c:out value="${asignatura.id_asignatura}" /></td>
 					<td><c:out value="${asignatura.descripcion}" /></td>
 					<td><c:out value="${asignatura.horario}" /></td>
@@ -168,7 +203,7 @@ String s_error = (String)request.getAttribute("Error");
 						href="eliminar_asignatura?id_asignatura=<c:out value='${asignatura.id_asignatura}' />">Borrar</a>
 					</td> --%>
 					
-					<td> <a 
+					<td> &nbsp;&nbsp;&nbsp;&nbsp;<a 
 			         href="eliminar_asignatura?id_asignatura=<c:out value='${asignatura.id_asignatura}' />" class="btn btn-info btn-xs" id="profesor">Borrar</a> 	
 					</td>
 					
@@ -195,9 +230,9 @@ String s_error = (String)request.getAttribute("Error");
 		</table>
 	</div>
 	
+</div>	
 	
-	
-
+</div>	
 
 
 

@@ -5,7 +5,7 @@
 <html>
 <head>
 
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="css/estilo.css" />
 <title>Gestión de profesores</title>
 <% 
@@ -36,20 +36,43 @@ function valida(){
     document.formulario.submit();
 }
 </script>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="css/estilo.css" />
 
 </head>
 <body>
+ <div class="container-fluid">  
+<div class="row">
+  <div class="col-md-4">
+  <img src="img/logo4.jpg"  alt="logo"  height="150" width="225"/> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </div>
+  <div class="col-md-4">
+       <h1 ><center>Administración Academia</center></h1>
+       <h2> <center>Gestión de Profesores</center></h2>
+  </div>
+  <div class="col-md-4" align= "right">
+                 usuario:<% out.println(session.getAttribute("usuario"));%>
+                 <br>
+			     <a href="index.html" class="btn btn-info btn-lg" >
+			         <span class="glyphicon glyphicon-log-out"></span> Log out
+			     </a>
+  </div>
+</div>
+
 	
-		<h1 align="center"> Gestión de profesores</h1>
-	
+	<!-- 	<h1 align="center"> Gestión de profesores</h1> -->
+<div class="row">  	
 	<ul id="barra">
 		<!-- <li><a href="listar">Profesores</a></li> -->
 		<li><a href="listar_alumnos">Alumnos</a></li>
 		<li><a href="listar_asignaturas?vengode=''">Asignaturas</a></li>
 	</ul>
-	<br>
-	<br>
+</div>	
+<div class="row"> 
 	
 		<h2 align="center">
 			<!--          <a href="alta_profesor">Alta profesor</a>
@@ -57,12 +80,13 @@ function valida(){
 			<a href="listar_profes">Listado de profesores</a>
 
 		</h2>
-	
-
-	<div align="center">
-
+</div>	
+<div class="row"> 
+	<!-- <div class="table-responsive"  align="center"> -->
+      
 		<form name="formulario" action="alta_profesor" method="post">
-
+		   
+           <div class="table-responsive"  align="center">
 			<table border="1" cellpadding="5">
 				<caption>Alta profesor</caption>
 
@@ -86,7 +110,12 @@ function valida(){
 						value="Grabar" onclick="valida()"/></td>
 				</tr>
 			</table>
+		   </div>	
+		  
 		</form>
-	</div>
+	<!-- </div> -->
+</div>		
+</div>	
+<script src="js/jquery.js" type="text/javascript"></script>
 </body>
 </html>

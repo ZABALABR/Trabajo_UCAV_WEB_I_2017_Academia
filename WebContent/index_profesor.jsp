@@ -37,24 +37,52 @@
         response.sendRedirect("index.html");
     }
 %>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="css/estilo.css" />
+    
 </head>
 <body>
-	<%--  <h1>Hola Administrador <%=session.getAttribute("usuario") %></h1> --%>
-	<center>
-		<h1>Mi horario de asignaturas</h1>
-	</center>
 
+<div class="container-fluid">  
+<div class="row">
+  <div class="col-md-4">
+  <img src="img/logo4.jpg"  alt="logo"  height="150" width="225"/> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </div>
+  <div class="col-md-4">
+       <h1 ><center>Administración Profesor</center></h1>
+       <h2> <center>Horario de asignaturas</center></h2>
+  </div>
+  <div class="col-md-4" align= "right">
+                 usuario:<% out.println(session.getAttribute("usuario"));%>
+                 <br>
+			     <a href="index.html" class="btn btn-info btn-lg" >
+			         <span class="glyphicon glyphicon-log-out"></span> Log out
+			     </a>
+  </div>
+</div>
+
+
+	<%--  <h1>Hola Administrador <%=session.getAttribute("usuario") %></h1> --%>
+<%-- 	<center>
+		<h1>Mi horario de asignaturas</h1>
+	</center> --%>
+<div class="row"> 
 	<ul id="barra">
 		<!-- <li><a href="listar_profes">Profesores</a></li> -->
 		<li><a href="profe_tutorias_pendientes">Gestion de tutorias</a></li>
 
 	</ul>
-	<br>
-	<br>
+</div>
+ <div class="row"> 
 
 
 
-	<div align="center">
+	<div class="table-responsive" align="center">
 		<table border="1" cellpadding="5">
 			<caption style="font: oblique bold 120% cursive">horario</caption>
 			<tr>
@@ -72,6 +100,7 @@
 			</c:forEach>
 		</table>
 	</div>
-
+</div>
+</div>
 </body>
 </html>

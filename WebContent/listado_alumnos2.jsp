@@ -59,8 +59,25 @@
     <script type="text/javascript" src="js/sorttable.js"></script>
 </head>
 <body>
-
-     <div align= "right">
+ <div class="container-fluid">  
+<div class="row">
+  <div class="col-md-4">
+  <img src="img/logo4.jpg"  alt="logo"  height="150" width="225"/> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </div>
+  <div class="col-md-4">
+       <h1 ><center>Administración Academia</center></h1>
+       <h2> <center>Gestión de alumnos</center></h2>
+  </div>
+  <div class="col-md-4" align= "right">
+                 usuario:<% out.println(session.getAttribute("usuario"));%>
+                 <br>
+			     <a href="index.html" class="btn btn-info btn-lg" >
+			         <span class="glyphicon glyphicon-log-out"></span> Log out
+			     </a>
+  </div>
+</div>
+<%--      <div align= "right">
                
                  usuario:<% out.println(session.getAttribute("usuario"));%>
                  <br>
@@ -77,18 +94,23 @@
 
        </h1>
      
-	<%--  <h1>Hola Administrador <%=session.getAttribute("usuario") %></h1> --%>
+	 <h1>Hola Administrador <%=session.getAttribute("usuario") %></h1>
 	<center>
 		<h2>Gestión de alumnos</h2>
-	</center>
-
+	</center> 
+	
+	--%>
+<div class="row"> 
+   
 	<ul id="barra">
 		<!-- <li><a href="listar_profes">Profesores</a></li> -->
 		<li><a href="listar_profes">Profesores</a></li>
 		<li><a href="listar_asignaturas?vengode=''">Asignaturas</a></li>
 	</ul>
-	<br>
-	<br>
+</div>
+<div class="row"> 
+	
+	
 	<center>
 		<h2>
 			<a href="add_alumno.jsp">Alta alumnos</a> &nbsp;&nbsp;&nbsp;
@@ -96,7 +118,10 @@
 
 		</h2>
 	</center>
+</div>
 
+<div class="row"> 
+  <div class="table-responsive" align="center">
 <%
             ConexionBBDD con =null;
             con =new ConexionBBDD();
@@ -244,8 +269,9 @@ if (pagina == 1) {
 			
 		</table>
 	</div> --%>
-
-
+	 </div>	
+ </div>	
+</div>
 </body>
 
 </html>

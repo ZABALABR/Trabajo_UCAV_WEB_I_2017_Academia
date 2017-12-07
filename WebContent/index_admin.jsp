@@ -54,8 +54,28 @@ String s_error = (String)request.getAttribute("Error");
     <link rel="stylesheet" href="css/estilo.css" />
 </head>
 <body>
-   
 
+ <div class="container-fluid">  
+<div class="row">
+  <div class="col-md-4">
+  <img src="img/logo4.jpg"  alt="logo"  height="150" width="225"/> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </div>
+  <div class="col-md-4">
+       <h1 ><center>Administración Academia</center></h1>
+       <h2> <center>Gestión de Profesores</center></h2>
+  </div>
+  <div class="col-md-4" align= "right">
+                 usuario:<% out.println(session.getAttribute("usuario"));%>
+                 <br>
+			     <a href="index.html" class="btn btn-info btn-lg" >
+			         <span class="glyphicon glyphicon-log-out"></span> Log out
+			     </a>
+  </div>
+</div>
+
+
+<%-- 
      <div align= "right">
                
                  usuario:<% out.println(session.getAttribute("usuario"));%>
@@ -75,19 +95,23 @@ String s_error = (String)request.getAttribute("Error");
          
        </h1>
 	
-	<%--    <center><h1>Gestión de profesores</h1></center> --%>
+	   <center><h1>Gestión de profesores</h1></center>
 		
 	
    
-   <h2> <center>Gestión de Profesores</center></h2>
-     
+   <h2> <center>Gestión de Profesores</center></h2> 
+   
+--%>
+ <div class="row">    
+   
 	<ul id="barra">
 		<!-- <li><a href="listar_profes">Profesores</a></li> -->
 		<li><a href="listar_alumnos">Alumnos</a></li>
 		<li><a href="listar_asignaturas?vengode=''">Asignaturas</a></li>
 	</ul>
-	<br>
-	<br>
+</div>
+ <div class="row"> 
+
 	<center>
 	    
 		<h2> 
@@ -97,10 +121,12 @@ String s_error = (String)request.getAttribute("Error");
 
 		</h2>
 	</center>
-	
+</div>
 
-
-	<div align="center">
+    	
+<div class="row">  
+    <div class="table-responsive" align="center">
+	<!-- <div align="center"> -->
 		<table class="sortable" border="1" cellpadding="5">
 			<caption style="font: oblique bold 120% cursive">Listado de profesores</caption>
 			<thead>
@@ -130,6 +156,9 @@ String s_error = (String)request.getAttribute("Error");
 			</c:forEach>
 		</table>
 	</div>
+	
+ </div>	
+</div>	
 <script src="js/jquery.js" type="text/javascript"></script>
 </body>
 </html>

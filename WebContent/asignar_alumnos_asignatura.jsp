@@ -33,6 +33,12 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    
 <link rel="stylesheet" href="css/estilo.css" />
 <script src="js/jquery-1.11.1.js" type="text/javascript"></script>
 
@@ -114,29 +120,50 @@ $('#asignaturas').change(function(event) {
 </script>
 </head>
 <body>
-<center>
-		<h1>Gestión de asignaturas</h1>
-	</center>
+
+<div class="container-fluid">  
+<div class="row">
+  <div class="col-md-4">
+  <img src="img/logo4.jpg"  alt="logo"  height="150" width="225"/> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </div>
+  <div class="col-md-4">
+       <h1 ><center>Administración Academia</center></h1>
+       <h2> <center>Gestión de asignaturas</center></h2>
+  </div>
+  <div class="col-md-4" align= "right">
+                 usuario:<% out.println(session.getAttribute("usuario"));%>
+                 <br>
+			     <a href="index.html" class="btn btn-info btn-lg" >
+			         <span class="glyphicon glyphicon-log-out"></span> Log out
+			     </a>
+  </div>
+</div>
+
+
+<div class="row"> 
 	<ul id="barra">
 		<!-- <li><a href="listar">Profesores</a></li> -->
 		<li><a href="listar_alumnos">Alumnos</a></li>
 		<li><a href="listar_profes">Profesores</a></li>
 	</ul>
-	<br>
-	<br>
-	<center>
-		<h2>
+</div>		
+<div class="row">
+    <div class="col-md-12">
+	<%-- <center> --%>
+		<h2 align="center">
 			<!--          <a href="alta_profesor">Alta profesor</a>
             &nbsp;&nbsp;&nbsp; -->
 			<a href="listar_asignaturas?vengode=''">Listado de asignaturas</a>
 		</h2>
-	</center>
-
+	</div>	
+	<%-- </center> --%>
+</div>
 <div class ="container">
        <br>
       
                 <div class= "row">
-		         <h3 class="col-xs-12">Asignar alumnos a una asignatura</h3>
+		         <h3 align="center" class="col-xs-12">Asignar alumnos a una asignatura</h3>
 		        </div>
 				<div class ="row">
 				  <div class="form-group">
@@ -216,6 +243,7 @@ $('#asignaturas').change(function(event) {
                    </div>                  
                   </div>	
 
-	</div>		        
+	</div>	
+</div>			        
 </body>
 </html>

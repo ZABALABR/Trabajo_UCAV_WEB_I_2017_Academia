@@ -32,7 +32,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
  -->
  <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-<link rel="stylesheet" href="css/bootstrap.css">
+<!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
 
 <link rel="stylesheet" href="css/estilo.css" />
 
@@ -48,28 +48,51 @@
 %>
 
 </head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="css/estilo.css" />
 <body>
-<div class="container">
+<div class="container-fluid">  
+<div class="row">
+  <div class="col-md-4">
+  <img src="img/logo4.jpg"  alt="logo"  height="150" width="225"/> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </div>
+  <div class="col-md-4">
+       <h1 ><center>Administración Profesor</center></h1>
+       <h2> <center>Gestión de tutorias profesor</center></h2>
+  </div>
+  <div class="col-md-4" align= "right">
+                 usuario:<% out.println(session.getAttribute("usuario"));%>
+                 <br>
+			     <a href="index.html" class="btn btn-info btn-lg" >
+			         <span class="glyphicon glyphicon-log-out"></span> Log out
+			     </a>
+  </div>
+</div>
+
 
 
           
 	<%--  <h1>Hola Administrador <%=session.getAttribute("usuario") %></h1> --%>
-	<center>
+<%-- 	<center>
 		<h1>Gestión de tutorias profesor</h1>
-	</center>
-	
+	</center> --%>
+<div class="row"> 	
 	<ul id="barra">
 		<!-- <li><a href="listar_profes">Profesores</a></li> -->
 		<li><a href="horarios_profesor">Mi horario</a></li>
 		
 	</ul>
-	<br>
-	<br>
+</div>	
 
 
+<div class="row"> 
 
 
-	<div align="center">
+	<div class="table-responsive" align="center">
 	    
 		<table  border="1" cellpadding="5">
 			<caption style="font: oblique bold 120% cursive" >Listado de tutorias</caption>
@@ -105,7 +128,7 @@
 
 
  </div>
-
+</div>
 <script src="js/jquery.js" type="text/javascript"></script>
 <script src="js/bootstrap-modal.js" type="text/javascript"></script>
 </body>
